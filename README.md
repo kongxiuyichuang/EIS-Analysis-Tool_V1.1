@@ -4,7 +4,7 @@
 
 面向 EIS 数据的一站式分析软件：从数据导入、Kramers-Kronig 校验、传输线模型（TLM）等效电路拟合，到弛豫/相位角/扩散时间分布反演（DRT / DCT / gDRT / DRT-DOP / DRT-DDT / DOP / DDT）与阻抗谱仿真，提供从宏观等效电路到微观弛豫分布的多维度分析能力。
 
-完整使用说明见 [docs/manual.md](docs/manual.md)。
+完整使用说明见 [docs/manual_V1.1.md](docs/manual_V1.1.md)。
 
 ---
 
