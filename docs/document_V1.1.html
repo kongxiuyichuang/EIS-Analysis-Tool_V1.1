@@ -1,0 +1,2488 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>-</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<h1 id="eis-analysis-tool-v1.1-使用手册">EIS Analysis Tool V1.1
+使用手册</h1>
+<h2 id="目录">目录</h2>
+<ol type="1">
+<li><a href="#1-引言">引言</a></li>
+<li><a href="#2-快速入门">快速入门</a></li>
+<li><a href="#3-data-标签页">Data 标签页</a></li>
+<li><a href="#4-fit-标签页">Fit 标签页</a></li>
+<li><a href="#5-drt-dct-标签页">DRT-DCT 标签页</a></li>
+<li><a href="#6-simulation-标签页">Simulation 标签页</a></li>
+<li><a href="#7-常见问题与故障排除">常见问题与故障排除</a></li>
+<li><a href="#8-参考文献">参考文献</a></li>
+</ol>
+<hr />
+<h2 id="引言">1. 引言</h2>
+<h3 id="软件概述">1.1 软件概述</h3>
+<p>EIS Analysis Tool
+是一款面向电化学阻抗谱（EIS）数据处理与分析的桌面应用程序。它提供了从数据导入、Kramers-Kronig
+校验、传输线模型（TLM）电路、等效电路拟合、弛豫/相位角/扩散时间分布（DRT/DCT/gDRT/DOP/DDT）反演到阻抗谱仿真的完整工作流。</p>
+<h4 id="软件特色">软件特色</h4>
+<ul>
+<li><strong>复杂边界的传输线模型</strong>：支持 Z 型、T 型、E
+型三种拓扑结构和 P-Q、P-P、O-O 等八种边界条件，以及 Universal-type
+通用公式，可覆盖所有多孔电极阻抗场景（Siroma et al. [7]）</li>
+<li><strong>广义 DRT（gDRT）</strong>：在传统 DRT
+基础上引入感性核函数，同时处理阻抗谱中的电感和电容响应，利用 <span
+class="math inline">\(-\text{Im}(Z)\)</span> 符号自动分离 RL 和 RC
+分布</li>
+<li><strong>电容时间分布分析（DCT）</strong>：在导纳空间进行 DRT
+反演，适用于高频阻抗较小的数据</li>
+<li><strong>DRT-DOP /
+DRT-DDT（QPHB）</strong>：基于分层贝叶斯（QPHB）的联合反演，可同时提取弛豫时间分布（DRT）、相位角分布（DOP）与扩散时间分布（DDT）；支持纯
+DOP / 纯 DDT</li>
+<li><strong>自适应 τ 网格</strong>：gDRT 中根据 <span
+class="math inline">\(-\text{Im}(Z)\)</span> 符号分布自动确定 τ
+范围，确保 <span class="math inline">\(f_0\)</span> 处不扩展</li>
+<li><strong>自动 K-K 优化</strong>：全范围扫描 + 多准则评分自动选择最优
+RC 数量</li>
+<li><strong>自定义电路拟合</strong>：通过元件编辑器自由组合电路结构，支持
+R、C、L、Wo、Ws、W、G、Ga、H、Ha 等多种基本阻抗元件</li>
+</ul>
+<h3 id="适用场景">1.2 适用场景</h3>
+<ul>
+<li><strong>电池 EIS
+数据分析</strong>：对称电池、全电池、三电极体系的阻抗谱解析</li>
+<li><strong>传输线模型拟合</strong>：多孔电极、固态电解质界面层的传输线建模</li>
+<li><strong>DRT / DCT / gDRT
+分析</strong>：弛豫时间分布反演，辨识电化学过程的特征时间常数</li>
+<li><strong>DOP / DDT 分析</strong>：相位角分布与扩散时间分布（含 2D
+异常扩散），适用于 CPE/Warburg/有限扩散等过程</li>
+<li><strong>阻抗谱仿真</strong>：通过调整模型参数观察阻抗谱变化规律</li>
+</ul>
+<h3 id="依赖环境">1.3 依赖环境</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">依赖</th>
+<th style="text-align: left;">用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Python 3.10+</td>
+<td style="text-align: left;">运行环境</td>
+</tr>
+<tr>
+<td style="text-align: left;">PyQt5</td>
+<td style="text-align: left;">图形界面</td>
+</tr>
+<tr>
+<td style="text-align: left;">numpy, scipy</td>
+<td style="text-align: left;">数值计算</td>
+</tr>
+<tr>
+<td style="text-align: left;">matplotlib</td>
+<td style="text-align: left;">数据可视化</td>
+</tr>
+<tr>
+<td style="text-align: left;">cvxopt</td>
+<td style="text-align: left;">二次规划求解（QP）</td>
+</tr>
+<tr>
+<td style="text-align: left;">pandas, openpyxl</td>
+<td style="text-align: left;">数据 I/O</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="快速入门">2. 快速入门</h2>
+<h3 id="数据格式要求">2.1 数据格式要求</h3>
+<p>支持的文件格式：CSV、TXT、XLSX、XLS。</p>
+<p>数据需包含三列，按以下顺序排列：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">列</th>
+<th style="text-align: left;">内容</th>
+<th style="text-align: left;">单位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">第 1 列</td>
+<td style="text-align: left;">频率 <span
+class="math inline">\(f\)</span></td>
+<td style="text-align: left;">Hz</td>
+</tr>
+<tr>
+<td style="text-align: left;">第 2 列</td>
+<td style="text-align: left;">实部 <span
+class="math inline">\(Z&#39;\)</span></td>
+<td style="text-align: left;"><span
+class="math inline">\(\Omega\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">第 3 列</td>
+<td style="text-align: left;">虚部 <span
+class="math inline">\(Z&#39;&#39;\)</span></td>
+<td style="text-align: left;"><span
+class="math inline">\(\Omega\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>频率建议从高到低排列。软件会自动排序。</p>
+<h3 id="典型工作流">2.2 典型工作流</h3>
+<pre><code>导入 EIS 数据 (CSV/TXT/Excel)
+       ↓
+  频率筛选 (去除噪声频段)
+       ↓
+  K-K 校验 (验证数据一致性) ───→ 不合格则返回检查数据
+       ↓
+   ┌──────────┬──────────────────────────────────┬────────────┐
+   ↓          ↓                                  ↓            ↓
+ 电路拟合   DRT / DCT / gDRT              DRT-DOP / DRT-DDT   仿真
+  (Fit)    (Tikhonov + QP)               DOP / DDT (QPHB)  (Simulation)
+   ↓          ↓                                  ↓
+ 等效电路   γ(τ) / RL+RC 分布              g(τ)+ρ(ν)/q(τ_D)
+   ↓          ↓                                  ↓
+              导出结果 (Excel)</code></pre>
+<h3 id="界面总览">2.3 界面总览</h3>
+<p>主窗口包含 4 个顶部标签页：</p>
+<table>
+<colgroup>
+<col style="width: 57%" />
+<col style="width: 42%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">标签页</th>
+<th style="text-align: left;">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">① Data</td>
+<td style="text-align: left;">数据导入、频率筛选、K-K 校验、原始/K-K
+可视化、版权信息</td>
+</tr>
+<tr>
+<td style="text-align: left;">② Fit</td>
+<td style="text-align: left;">传输线模型选择、元件编辑、参数配置、CNLS
+拟合、拟合结果可视化</td>
+</tr>
+<tr>
+<td style="text-align: left;">③ DRT-DCT</td>
+<td
+style="text-align: left;">七种分布方法（DRT/DCT/gDRT/DRT-DOP/DRT-DDT/DOP/DDT）、谱图/Nyquist/残差、结果统计与导出</td>
+</tr>
+<tr>
+<td style="text-align: left;">④ Simulation</td>
+<td
+style="text-align: left;">模型选择、参数输入、频率扫描、阻抗谱计算与可视化</td>
+</tr>
+</tbody>
+</table>
+<p>每个标签页采用左右分栏布局：左侧为控制面板（可滚动），右侧为绘图区。</p>
+<hr />
+<h2 id="data-标签页">3. Data 标签页</h2>
+<h3 id="数据导入">3.1 数据导入</h3>
+<p>点击「导入数据」按钮，选择文件。支持自动识别分隔符。导入后将在信息标签中显示文件名、数据点数和频率范围。</p>
+<h3 id="频率筛选">3.2 频率筛选</h3>
+<p>通过拖拽 <code>f_min</code> 和 <code>f_max</code>
+的滑块或输入数值，可以截取目标频段。筛选后的数据将作为后续 Fit 和
+DRT-DCT 分析的数据源。</p>
+<h3 id="kramers-kronig-校验">3.3 Kramers-Kronig 校验</h3>
+<h4 id="数学原理">数学原理</h4>
+<p>K-K 校验（Schönleber et al. [1]）通过拟合串联 <span
+class="math inline">\(R\text{-}(RC)_M\)</span> 等效电路来验证 EIS
+数据是否满足 Kramers-Kronig 关系：</p>
+<p><span class="math display">\[Z(\omega) = R_0 + \sum_{k=1}^{M}
+\frac{R_k}{1 + j\omega\tau_k} + \frac{1}{j\omega C} + j\omega L
+\tag{1}\]</span></p>
+<p>采用 Boukamp 权重 [2] 的加权最小二乘：</p>
+<p><span class="math display">\[\chi^2 = \sum_{n=1}^{N} \frac{|\hat{Z}_n
+- Z_n|^2}{|Z_n|^2} \tag{2}\]</span></p>
+<p>将问题转化为线性方程组 <span class="math inline">\(A\mathbf{x} =
+\mathbf{b}\)</span> 求解。</p>
+<h4 id="μ-准则">μ 准则</h4>
+<p>μ 值衡量拟合中物理意义的合理性：</p>
+<p><span class="math display">\[\mu = 1 - \frac{\sum
+|R_k^{\text{neg}}|}{\sum |R_k^{\text{pos}}|} \tag{3}\]</span></p>
+<p>其中 <span class="math inline">\(R_k^{\text{pos}}\)</span> 为正的
+<span class="math inline">\(R_k\)</span> 值之和，<span
+class="math inline">\(R_k^{\text{neg}}\)</span> 为负的 <span
+class="math inline">\(R_k\)</span> 值之和。<span
+class="math inline">\(\mu\)</span> 越接近 1
+表示电阻值越符合物理实际（全部为正）。一般以 <span
+class="math inline">\(\mu &gt; 0.85\)</span> 为合格。</p>
+<h4 id="自动优化auto-optimized模式">自动优化（Auto-Optimized）模式</h4>
+<p>K-K 校验的精度受 RC 元素数量 <span class="math inline">\(M\)</span>
+的选择影响。本软件支持<strong>自动优化模式</strong>，该模式不依赖单一的
+<span class="math inline">\(\mu\)</span>
+截断准则，而是通过多准则评分确定最优 <span
+class="math inline">\(M\)</span>（Plank et al. [8]）：</p>
+<ol type="1">
+<li><strong>全范围扫描</strong>：对 <span class="math inline">\(M =
+1\)</span> 到 <span class="math inline">\(M_{\max}\)</span> 分别执行 K-K
+拟合</li>
+<li><strong><span class="math inline">\(\mu\)</span> 过滤</strong>：保留
+<span class="math inline">\(\mu &gt; \mu_{\text{cutoff}}\)</span>
+的拟合结果</li>
+<li><strong>曲率评分</strong>：对每个候选 <span
+class="math inline">\(M\)</span> 计算其 <span
+class="math inline">\(\gamma(\tau)\)</span> 分布的曲率特征</li>
+<li><strong>最优选择</strong>：结合曲率准则和 <span
+class="math inline">\(\chi^2\)</span> 评分选择最佳 <span
+class="math inline">\(M\)</span></li>
+</ol>
+<p>该模式的优势在于避免 <span class="math inline">\(\mu\)</span> 值随
+<span class="math inline">\(M\)</span> 增加而单调下降时选择过小的 <span
+class="math inline">\(M\)</span>，对分布型阻抗谱（如 Warburg
+型）可获得更合理的 RC 数量。</p>
+<h4 id="结果解读">结果解读</h4>
+<ul>
+<li><strong>RC 数量</strong>：拟合所需的 RC
+元件数。数量越多说明阻抗谱越复杂（分布型越强）</li>
+<li><strong>μ 值</strong>：拟合物理一致性指标，<span
+class="math inline">\(\mu &gt; 0.85\)</span> 表示数据通过 K-K 校验</li>
+<li><strong>伪卡方 <span
+class="math inline">\(\chi^2\)</span></strong>：拟合质量，越小越好</li>
+<li><strong>残差统计</strong>：归一化残差 <span
+class="math inline">\(\Delta/\lvert Z \rvert\)</span>
+的最大百分比，反映模型与数据的偏差</li>
+</ul>
+<hr />
+<h2 id="fit-标签页">4. Fit 标签页</h2>
+<h3 id="传输线模型-tlm">4.1 传输线模型 (TLM)</h3>
+<p>传输线模型（Siroma et
+al. [7]）将多孔电极内部的复杂物理化学过程简化为由电子电阻、离子电阻和界面阻抗组成的等效电路网络。软件支持三种拓扑结构和八种边界条件。</p>
+<h4 id="基本元器件定义">4.1.1 基本元器件定义</h4>
+<p>TLM 模型中的基本元器件包括：</p>
+<table>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 48%" />
+<col style="width: 23%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: center;">符号</th>
+<th style="text-align: left;">名称</th>
+<th style="text-align: left;">阻抗公式 <span
+class="math inline">\(Z(\omega)\)</span></th>
+<th style="text-align: left;">参数命名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>R</strong></td>
+<td style="text-align: left;">电阻</td>
+<td style="text-align: left;"><span class="math inline">\(Z_R =
+R\)</span></td>
+<td style="text-align: left;"><code>_R</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>C</strong></td>
+<td style="text-align: left;">常相角元件 (CPE)</td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z_C = \frac{1}{C(j\omega)^p}\)</span></td>
+<td style="text-align: left;"><code>_C</code>, <code>_p</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>L</strong></td>
+<td style="text-align: left;">电感</td>
+<td style="text-align: left;"><span class="math inline">\(Z_L = j\omega
+L\)</span></td>
+<td style="text-align: left;"><code>_L</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Wo</strong></td>
+<td style="text-align: left;">有限空间扩散（反射边界）</td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z_{\text{Wo}} =
+R_d\frac{\coth((j\omega\tau_d)^p)}{(j\omega\tau_d)^p}\)</span></td>
+<td style="text-align: left;"><code>_Rd</code>, <code>_tau</code>,
+<code>_p</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Ws</strong></td>
+<td style="text-align: left;">有限长度扩散（透射边界）</td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z_{\text{Ws}} =
+R_d\frac{\tanh((j\omega\tau_d)^p)}{(j\omega\tau_d)^p}\)</span></td>
+<td style="text-align: left;"><code>_Rd</code>, <code>_tau</code>,
+<code>_p</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>W</strong></td>
+<td style="text-align: left;">半无限 Warburg 扩散</td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z_W = \frac{A_W}{\sqrt{j\omega}}\)</span></td>
+<td style="text-align: left;"><code>_Aw</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>H</strong></td>
+<td style="text-align: left;">Havriliak-Negami 弛豫</td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z_H = \frac{(1+(j\omega\tau)^a)^b}{j\omega\Delta C}\)</span></td>
+<td style="text-align: left;"><code>_dC</code>, <code>_tau</code>,
+<code>_a</code>, <code>_b</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Ha</strong></td>
+<td style="text-align: left;">HN 替代形式</td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z_{Ha} = \frac{R}{(1+(j\omega\tau)^a)^b}\)</span></td>
+<td style="text-align: left;"><code>_R</code>, <code>_tau</code>,
+<code>_a</code>, <code>_b</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>G</strong></td>
+<td style="text-align: left;">Gerischer</td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z_G = \frac{1}{Y(k+j\omega)^n}\)</span></td>
+<td style="text-align: left;"><code>_Y</code>, <code>_k</code>,
+<code>_n</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Ga</strong></td>
+<td style="text-align: left;">Gerischer 替代形式</td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z_{Ga} = \frac{R}{(1+j\omega\tau)^n}\)</span></td>
+<td style="text-align: left;"><code>_R</code>, <code>_tau</code>,
+<code>_n</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="传播常数">4.1.2 传播常数</h4>
+<p>传输线模型的特征由传播常数 <span
+class="math inline">\(\gamma\)</span> 描述：</p>
+<p><span class="math display">\[\beta = \sqrt{\frac{z_A + z_C}{z_B}}
+\cdot L \tag{4}\]</span></p>
+<p><span class="math display">\[\alpha = \sqrt{\frac{z_A}{z_B}} \cdot L
+\quad (z_C = 0) \tag{5}\]</span></p>
+<p>其中 <span class="math inline">\(L\)</span> 为电极厚度（cm），<span
+class="math inline">\(z_A\)</span>、<span
+class="math inline">\(z_B\)</span>、<span
+class="math inline">\(z_C\)</span> 为各支路单位长度的复阻抗。</p>
+<h4 id="z-type-阻抗公式">4.1.3 Z-type 阻抗公式</h4>
+<p>当使用 <code>"Z-type"</code> 拓扑时，总阻抗 <span
+class="math inline">\(Z\)</span> 的表达式中 <span
+class="math inline">\(z_A\)</span> 和 <span
+class="math inline">\(z_C\)</span> 对称。</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">边界条件</th>
+<th style="text-align: left;">阻抗公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>P-Q</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z = \frac{z_A z_C}{z_A+z_C}L +
+\frac{\sqrt{z_B}}{(z_A+z_C)^{3/2}}\cdot\frac{(z_A^2+z_C^2)\cosh\beta+2z_A
+z_C+\left(\frac{z_C^2}{z_P}+\frac{z_A^2}{z_Q}\right)\sqrt{z_B}(z_A+z_C)\sinh\beta}{\left\{1+\frac{1}{z_P
+z_Q}z_B(z_A+z_C)\right\}\sinh\beta+\left(\frac{1}{z_P}+\frac{1}{z_Q}\right)\sqrt{z_B}(z_A+z_C)\cosh\beta}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>open-Q</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z = \frac{z_A z_C}{z_A+z_C}L +
+\frac{\sqrt{z_B}}{(z_A+z_C)^{3/2}}\cdot\frac{(z_A^2+z_C^2)\cosh\beta+2z_A
+z_C+\frac{1}{z_Q}z_A^2\sqrt{z_B}(z_A+z_C)\sinh\beta}{\sinh\beta+\frac{1}{z_Q}\sqrt{z_B}(z_A+z_C)\cosh\beta}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>open-open</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z = \frac{z_A z_C}{z_A+z_C}L +
+\frac{\sqrt{z_B}}{(z_A+z_C)^{3/2}}\cdot\frac{(z_A^2+z_C^2)\cosh\beta+2z_A
+z_C}{\sinh\beta}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>P-Q (<span
+class="math inline">\(z_C=0\)</span>)</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z = \frac{\sqrt{z_A z_B}\cosh\alpha+\frac{1}{z_Q}z_A
+z_B\sinh\alpha}{\left\{1+\frac{1}{z_P z_Q}z_A
+z_B\right\}\sinh\alpha+\left(\frac{1}{z_P}+\frac{1}{z_Q}\right)\sqrt{z_A
+z_B}\cosh\alpha}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>open-Q (<span
+class="math inline">\(z_C=0\)</span>)</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z = \frac{\sqrt{z_A z_B}\cosh\alpha+\frac{1}{z_Q}z_A
+z_B\sinh\alpha}{\sinh\alpha+\frac{1}{z_Q}\sqrt{z_A
+z_B}\cosh\alpha}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>open-open (<span
+class="math inline">\(z_C=0\)</span>)</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z = \frac{\sqrt{z_A z_B}\cosh\alpha}{\sinh\alpha} = \sqrt{z_A
+z_B}\coth\alpha\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>边界条件符号说明： - <strong>P</strong>（可穿透,
+Permeable）：边界处无额外阻抗 - <strong>Q</strong>（阻塞,
+Blocking）：边界处有界面阻抗 <span class="math inline">\(z_P\)</span> 或
+<span class="math inline">\(z_Q\)</span> - <strong>O</strong>（不可穿透,
+Open）：边界处开路 - <strong>W</strong>（Warburg）：边界处为扩散阻抗</p>
+<h4 id="t-type-阻抗公式">4.1.4 T-type 阻抗公式</h4>
+<p>当使用 <code>"T-type"</code> 拓扑时，<span
+class="math inline">\(z_A\)</span> 侧为主导路径。</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">边界条件</th>
+<th style="text-align: left;">阻抗公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>P-Q</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z = \frac{z_A z_C}{z_A+z_C}L +
+\frac{z_A^2\sqrt{z_B}}{(z_A+z_C)^{3/2}}\cdot\frac{2(\cosh\beta-1)+\left(\frac{1}{z_P}+\frac{1}{z_Q}\right)\sqrt{z_B}(z_A+z_C)\sinh\beta}{\left\{1+\frac{1}{z_P
+z_Q}z_B(z_A+z_C)\right\}\sinh\beta+\left(\frac{1}{z_P}+\frac{1}{z_Q}\right)\sqrt{z_B}(z_A+z_C)\cosh\beta}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>P-P</strong>（对称）</td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z = \frac{z_A z_C}{z_A+z_C}L +
+2\cdot\frac{z_A^2\sqrt{z_B}}{(z_A+z_C)^{3/2}}\cdot\frac{(\cosh\beta-1)+\frac{1}{z_P}\sqrt{z_B}(z_A+z_C)\sinh\beta}{\left\{1+\frac{1}{z_P^2}z_B(z_A+z_C)\right\}\sinh\beta+\frac{2}{z_P}\sqrt{z_B}(z_A+z_C)\cosh\beta}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>open-Q</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z = \frac{z_A z_C}{z_A+z_C}L +
+\frac{z_A^2\sqrt{z_B}}{(z_A+z_C)^{3/2}}\cdot\frac{2(\cosh\beta-1)+\frac{1}{z_Q}\sqrt{z_B}(z_A+z_C)\sinh\beta}{\sinh\beta+\frac{1}{z_Q}\sqrt{z_B}(z_A+z_C)\cosh\beta}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>open-open</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z = \frac{z_A z_C}{z_A+z_C}L +
+2\cdot\frac{z_A^2\sqrt{z_B}}{(z_A+z_C)^{3/2}}\cdot\frac{\cosh\beta-1}{\sinh\beta}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>P-Q (<span
+class="math inline">\(z_C=0\)</span>)</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z = \sqrt{z_A
+z_B}\cdot\frac{2(\cosh\alpha-1)+\left(\frac{1}{z_P}+\frac{1}{z_Q}\right)\sqrt{z_A
+z_B}\sinh\alpha}{\left\{1+\frac{1}{z_P z_Q}z_A
+z_B\right\}\sinh\alpha+\left(\frac{1}{z_P}+\frac{1}{z_Q}\right)\sqrt{z_A
+z_B}\cosh\alpha}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>P-P (<span
+class="math inline">\(z_C=0\)</span>)</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z = \sqrt{z_A z_B}\cdot
+2\cdot\frac{(\cosh\alpha-1)+\frac{1}{z_P}\sqrt{z_A
+z_B}\sinh\alpha}{\left\{1+\frac{1}{z_P^2}z_A
+z_B\right\}\sinh\alpha+\frac{2}{z_P}\sqrt{z_A
+z_B}\cosh\alpha}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>open-Q (<span
+class="math inline">\(z_C=0\)</span>)</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z = \sqrt{z_A z_B}\cdot\frac{2(\cosh\alpha-1)+\frac{1}{z_Q}\sqrt{z_A
+z_B}\sinh\alpha}{\sinh\alpha+\frac{1}{z_Q}\sqrt{z_A
+z_B}\cosh\alpha}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>open-open (<span
+class="math inline">\(z_C=0\)</span>)</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z = 2\sqrt{z_A z_B}\cdot\frac{\cosh\alpha-1}{\sinh\alpha}\)</span></td>
+</tr>
+</tbody>
+</table>
+<h4 id="e-type-阻抗公式">4.1.5 E-type 阻抗公式</h4>
+<p>当使用 <code>"E-type"</code> 拓扑时，<span
+class="math inline">\(z_A\)</span>
+被视为短路，模型退化为单层传输线。</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">边界条件</th>
+<th style="text-align: left;">阻抗公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>P-Q</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z =
+\frac{\sqrt{z_B(z_A+z_C)}\cosh\beta+\frac{1}{z_Q}z_B(z_A+z_C)\sinh\beta}{\left\{1+\frac{1}{z_P
+z_Q}z_B(z_A+z_C)\right\}\sinh\beta+\left(\frac{1}{z_P}+\frac{1}{z_Q}\right)\sqrt{z_B(z_A+z_C)}\cosh\beta}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>open-Q</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z =
+\frac{\sqrt{z_B(z_A+z_C)}\cosh\beta+\frac{1}{z_Q}z_B(z_A+z_C)\sinh\beta}{\sinh\beta+\frac{1}{z_Q}\sqrt{z_B(z_A+z_C)}\cosh\beta}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>open-open</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z = \frac{\sqrt{z_B(z_A+z_C)}\cosh\beta}{\sinh\beta} =
+\sqrt{z_B(z_A+z_C)}\coth\beta\)</span></td>
+</tr>
+</tbody>
+</table>
+<h4 id="universal-type-通用公式">4.1.6 Universal-type 通用公式</h4>
+<p>此模式允许用户通过 <span class="math inline">\(z_V\)</span>、<span
+class="math inline">\(z_W\)</span>、<span
+class="math inline">\(z_X\)</span>、<span
+class="math inline">\(z_Y\)</span>
+四个额外边界阻抗自由组合，覆盖所有可能的边界条件配置（Siroma et
+al. [7]）：</p>
+<p><span class="math display">\[Z = \frac{z_A z_C}{z_A+z_C} \cdot L +
+\frac{\sqrt{z_B}}{(z_A+z_C)^{3/2}} \cdot \frac{A\cosh\beta + B\sinh\beta
++ C}{D\cosh\beta + E\sinh\beta} \tag{6}\]</span></p>
+<p>其中系数 <span class="math inline">\(A,B,C,D,E\)</span> 定义为：</p>
+<p><span class="math display">\[\begin{aligned}
+A &amp;= \{Z_W(Z_X+Z_Y) + (Z_V+Z_W)Z_Y + Z_V Z_W + Z_X Z_Y\} z_A^2 \\
+  &amp;\quad + 2(Z_V Z_W + Z_X Z_Y) z_A z_C \\
+  &amp;\quad + \{Z_V(Z_X+Z_Y) + (Z_V+Z_W)Z_X + Z_V Z_W + Z_X Z_Y\} z_C^2
+\end{aligned} \tag{7}\]</span></p>
+<p><span class="math display">\[\begin{aligned}
+B &amp;= \sqrt{z_B(z_A+z_C)} \cdot \Big[ (Z_W+Z_Y)z_A^2 + \{Z_V
+Z_W(Z_X+Z_Y) \\
+  &amp;\quad + (Z_V+Z_W)Z_X Z_Y\} \frac{z_A+z_C}{z_B} + (Z_V+Z_X)z_C^2
+\Big]
+\end{aligned} \tag{8}\]</span></p>
+<p><span class="math display">\[C = -2 Z_W Z_Y z_A^2 + 2 (Z_W Z_X + Z_V
+Z_Y) z_A z_C - 2 Z_V Z_X z_C^2 \tag{9}\]</span></p>
+<p><span class="math display">\[D = (Z_V+Z_W+Z_X+Z_Y)\sqrt{z_B(z_A+z_C)}
+\tag{10}\]</span></p>
+<p><span class="math display">\[E = z_B(z_A+z_C) + (Z_V+Z_W)(Z_X+Z_Y)
+\tag{11}\]</span></p>
+<p>通过设定 <span class="math inline">\(z_V,z_W,z_X,z_Y\)</span> 为
+<span class="math inline">\(0\)</span> 或 <span
+class="math inline">\(\infty\)</span>，通用公式可以退化为上述所有 8
+种边界条件。</p>
+<h4 id="模式说明">4.1.7 模式说明</h4>
+<h5 id="非法拉第模式non-faradaic">非法拉第模式（Non-Faradaic）</h5>
+<p>适用于双电层电容行为（如不含活性物质的碳电极或锂离子电池阻塞电极）：</p>
+<p><span class="math display">\[z_B =
+\frac{1}{C_{dl,\text{porous}}(j\omega)^p} \tag{12}\]</span></p>
+<h5 id="法拉第模式faradaic">法拉第模式（Faradaic）</h5>
+<p>适用于存在电荷转移反应的场景：</p>
+<p><span class="math display">\[z_B = \frac{R_{ct}}{1 +
+C_{dl,\text{porous}}(j\omega)^p R_{ct}} \tag{13}\]</span></p>
+<p>其中 <span class="math inline">\(C_{dl,\text{porous}}\)</span>
+为多孔电极双电层电容，<span class="math inline">\(p\)</span> 为 CPE
+指数，<span class="math inline">\(R_{ct}\)</span> 为电荷转移电阻。</p>
+<h4 id="物理变量对照表">4.1.8 物理变量对照表</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">变量</th>
+<th style="text-align: left;">含义</th>
+<th style="text-align: left;">典型单位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><span
+class="math inline">\(R_0\)</span></td>
+<td style="text-align: left;">欧姆电阻（集流体+电解液+接触电阻）</td>
+<td style="text-align: left;"><span
+class="math inline">\(\Omega\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><span
+class="math inline">\(L\)</span></td>
+<td style="text-align: left;">电极厚度</td>
+<td style="text-align: left;">cm</td>
+</tr>
+<tr>
+<td style="text-align: left;"><span
+class="math inline">\(z_A\)</span></td>
+<td style="text-align: left;">单位长度的电子阻抗（<span
+class="math inline">\(z_A\)</span> 支路）</td>
+<td style="text-align: left;"><span
+class="math inline">\(\Omega\)</span>/cm</td>
+</tr>
+<tr>
+<td style="text-align: left;"><span
+class="math inline">\(z_B\)</span></td>
+<td style="text-align: left;">单位长度的界面阻抗（<span
+class="math inline">\(z_B\)</span> 支路）</td>
+<td style="text-align: left;"><span
+class="math inline">\(\Omega\cdot\)</span>cm</td>
+</tr>
+<tr>
+<td style="text-align: left;"><span
+class="math inline">\(z_C\)</span></td>
+<td style="text-align: left;">单位长度的电子阻抗（<span
+class="math inline">\(z_C\)</span> 支路）</td>
+<td style="text-align: left;"><span
+class="math inline">\(\Omega\)</span>/cm</td>
+</tr>
+<tr>
+<td style="text-align: left;"><span
+class="math inline">\(z_P\)</span></td>
+<td style="text-align: left;">边界 A 的界面阻抗</td>
+<td style="text-align: left;"><span
+class="math inline">\(\Omega\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><span
+class="math inline">\(z_Q\)</span></td>
+<td style="text-align: left;">边界 B 的界面阻抗</td>
+<td style="text-align: left;"><span
+class="math inline">\(\Omega\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="元件定义与参数配置">4.2 元件定义与参数配置</h3>
+<p>用户通过元件编辑器定义各支路（zA、zB、zC、zP、zQ、zV、zW、zX、zY）的电路表达式。软件支持自定义模式，用户可编写任意电路结构的表达式。</p>
+<h4 id="基本元件语法">4.2.1 基本元件语法</h4>
+<table>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 36%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">元件</th>
+<th style="text-align: left;">语法</th>
+<th style="text-align: left;">参数</th>
+<th style="text-align: left;">示例</th>
+<th style="text-align: left;">等效电路含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">电阻</td>
+<td style="text-align: left;"><code>R</code></td>
+<td style="text-align: left;"><code>_R</code></td>
+<td style="text-align: left;"><code>R1</code></td>
+<td style="text-align: left;"><span
+class="math inline">\(\text{R}_1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">CPE</td>
+<td style="text-align: left;"><code>C</code></td>
+<td style="text-align: left;"><code>_C</code>, <code>_p</code></td>
+<td style="text-align: left;"><code>C1</code></td>
+<td style="text-align: left;"><span
+class="math inline">\(\text{CPE}_1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">电感</td>
+<td style="text-align: left;"><code>L</code></td>
+<td style="text-align: left;"><code>_L</code></td>
+<td style="text-align: left;"><code>L1</code></td>
+<td style="text-align: left;"><span
+class="math inline">\(\text{L}_1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">有限空间扩散（频散）</td>
+<td style="text-align: left;"><code>Wo</code></td>
+<td style="text-align: left;"><code>_Rd</code>, <code>_tau</code>,
+<code>_p</code></td>
+<td style="text-align: left;"><code>Wo1</code></td>
+<td style="text-align: left;"><span
+class="math inline">\(\text{Wo}_1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">有限长度扩散（频散）</td>
+<td style="text-align: left;"><code>Ws</code></td>
+<td style="text-align: left;"><code>_Rd</code>, <code>_tau</code>,
+<code>_p</code></td>
+<td style="text-align: left;"><code>Ws1</code></td>
+<td style="text-align: left;"><span
+class="math inline">\(\text{Ws}_1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">半无限 Warburg</td>
+<td style="text-align: left;"><code>W</code></td>
+<td style="text-align: left;"><code>_Aw</code></td>
+<td style="text-align: left;"><code>W1</code></td>
+<td style="text-align: left;"><span
+class="math inline">\(\text{W}_1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">Havriliak-Negami</td>
+<td style="text-align: left;"><code>H</code></td>
+<td style="text-align: left;"><code>_dC</code>, <code>_tau</code>,
+<code>_a</code>, <code>_b</code></td>
+<td style="text-align: left;"><code>H1</code></td>
+<td style="text-align: left;"><span
+class="math inline">\(\text{HN}_1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">HN 替代形式</td>
+<td style="text-align: left;"><code>Ha</code></td>
+<td style="text-align: left;"><code>_R</code>, <code>_tau</code>,
+<code>_a</code>, <code>_b</code></td>
+<td style="text-align: left;"><code>Ha1</code></td>
+<td style="text-align: left;"><span
+class="math inline">\(\text{Ha}_1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">Gerischer</td>
+<td style="text-align: left;"><code>G</code></td>
+<td style="text-align: left;"><code>_Y</code>, <code>_k</code>,
+<code>_n</code></td>
+<td style="text-align: left;"><code>G1</code></td>
+<td style="text-align: left;"><span
+class="math inline">\(\text{G}_1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">Gerischer 替代形式</td>
+<td style="text-align: left;"><code>Ga</code></td>
+<td style="text-align: left;"><code>_R</code>, <code>_tau</code>,
+<code>_n</code></td>
+<td style="text-align: left;"><code>Ga1</code></td>
+<td style="text-align: left;"><span
+class="math inline">\(\text{Ga}_1\)</span></td>
+</tr>
+</tbody>
+</table>
+<h4 id="串并联语法规则">4.2.2 串并联语法规则</h4>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 26%" />
+<col style="width: 52%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">语法</th>
+<th style="text-align: left;">含义</th>
+<th style="text-align: left;">等效表达式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>A-B</code></td>
+<td style="text-align: left;"><strong>串联</strong>：元件 A 与 B
+串联</td>
+<td style="text-align: left;"><span
+class="math inline">\(Z_{\text{total}} = Z_A + Z_B\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>(AB)</code></td>
+<td style="text-align: left;"><strong>并联</strong>：元件 A 与 B
+并联</td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z_{\text{total}} = \frac{1}{1/Z_A + 1/Z_B}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>(ABC...)</code></td>
+<td style="text-align: left;">多元件并联</td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z_{\text{total}} = \frac{1}{1/Z_A + 1/Z_B + 1/Z_C +
+\cdots}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">括号嵌套</td>
+<td style="text-align: left;">括号内先计算，再与外层组合</td>
+<td style="text-align: left;">见下方案例</td>
+</tr>
+</tbody>
+</table>
+<h4 id="案例">4.2.3 案例</h4>
+<p><strong>案例 1：两个电阻串联</strong></p>
+<pre><code>zA = R1-R2</code></pre>
+<p>等效电路：<span class="math inline">\(\text{R}_1\)</span> — <span
+class="math inline">\(\text{R}_2\)</span>（串联）
+参数：<code>R1_R</code>, <code>R2_R</code></p>
+<p><strong>案例 2：一个电阻与一个 CPE 并联（RC 并联）</strong></p>
+<pre><code>zB = (R1C1)</code></pre>
+<p>等效电路：<span class="math inline">\(\text{R}_1 \parallel
+\text{CPE}_1\)</span> 参数：<code>R1_R</code>, <code>C1_C</code>,
+<code>C1_p</code></p>
+<p><strong>案例 3：电阻与 RC 并联支路串联</strong></p>
+<pre><code>zA = R1-(R2C1)</code></pre>
+<p>等效电路：<span class="math inline">\(\text{R}_1\)</span> — (<span
+class="math inline">\(\text{R}_2 \parallel \text{CPE}_1\)</span>)
+参数：<code>R1_R</code>, <code>R2_R</code>, <code>C1_C</code>,
+<code>C1_p</code></p>
+<p><strong>案例 4：电阻与 RC 并联支路再并联</strong></p>
+<pre><code>zB = (R1(R2C1))</code></pre>
+<p>等效电路：<span class="math inline">\(\text{R}_1 \parallel
+(\text{R}_2 \parallel \text{CPE}_1)\)</span> = <span
+class="math inline">\(\text{R}_1 \parallel \text{R}_2 \parallel
+\text{CPE}_1\)</span> 参数：<code>R1_R</code>, <code>R2_R</code>,
+<code>C1_C</code>, <code>C1_p</code></p>
+<p><strong>案例 5：含有 Warburg 扩散的 Randles 电路</strong></p>
+<pre><code>zB = R1-(C1(R2-Wo1))</code></pre>
+<p>等效电路：<span class="math inline">\(\text{R}_1 — (\text{CPE}_1
+\parallel (\text{R}_2 — \text{Wo}_1))\)</span></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">层次</th>
+<th style="text-align: left;">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>Wo1</code></td>
+<td style="text-align: left;">有限空间扩散阻抗 <span
+class="math inline">\(Z_{\text{Wo}}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>R2-Wo1</code></td>
+<td style="text-align: left;"><span class="math inline">\(R_2\)</span>
+与 <span class="math inline">\(Wo_1\)</span> 串联</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>(C1(R2-Wo1))</code></td>
+<td style="text-align: left;"><span class="math inline">\(C_1\)</span>
+与上述串联体并联</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>R1-(C1(R2-Wo1))</code></td>
+<td style="text-align: left;"><span class="math inline">\(R_1\)</span>
+与上述并联体串联</td>
+</tr>
+</tbody>
+</table>
+<p>参数：<code>R1_R</code>, <code>R2_R</code>, <code>C1_C</code>,
+<code>C1_p</code>, <code>Wo1_Rd</code>, <code>Wo1_tau</code>,
+<code>Wo1_p</code></p>
+<h4 id="组件命名规则">4.2.4 组件命名规则</h4>
+<ul>
+<li>组件名以字母开头，后跟数字：<code>R1</code>, <code>R2</code>,
+<code>C1</code>, <code>L1</code>, <code>Wo1</code>, <code>Ws1</code>,
+<code>W1</code></li>
+<li>组件类型由名称的首字母/前缀自动识别（<code>R</code>→ 电阻,
+<code>C</code>→ CPE, <code>L</code>→ 电感, <code>Wo</code>→
+有限空间扩散, <code>Ws</code>→ 有限长度扩散, <code>W</code>→ 半无限扩散,
+<code>H</code>→ Havriliak-Negami, <code>Ha</code>→ HN 替代形式,
+<code>G</code>→ Gerischer, <code>Ga</code>→ Gerischer 替代形式）</li>
+<li>参数名自动生成：<code>组件名_参数后缀</code>（如 <code>R1_R</code>,
+<code>C1_C</code>, <code>C1_p</code>, <code>Wo1_Rd</code>,
+<code>Wo1_tau</code>, <code>Wo1_p</code>）</li>
+</ul>
+<h4 id="自定义模式">4.2.5 自定义模式</h4>
+<p>选择 <code>"Custom"</code>
+模型类型后，用户可以通过元件编辑器自由组合现有元件类型（R、C、L、Wo、Ws、W）构建任意等效电路结构，语法规则与
+4.2.1~4.2.3 节完全一致：</p>
+<pre><code>zA = R1-(R2C1)
+zB = (R3(Wo1C1))</code></pre>
+<p>自定义模式不引入新元件类型，仅允许用户在六个支路（zA、zB、zC、zP、zQ、zV、zW、zX、zY）中灵活分配不同的电路拓扑，无需受预设模板限制。</p>
+<h4 id="参数配置表">4.2.6 参数配置表</h4>
+<p>参数表包含 5 列：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">列</th>
+<th style="text-align: left;">内容</th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">参数名</td>
+<td style="text-align: left;">自动生成，如 <code>R1_R</code></td>
+<td style="text-align: left;">不可编辑</td>
+</tr>
+<tr>
+<td style="text-align: left;">初始值</td>
+<td style="text-align: left;">拟合的起始猜测</td>
+<td style="text-align: left;">用户可调</td>
+</tr>
+<tr>
+<td style="text-align: left;">下界</td>
+<td style="text-align: left;">参数的最小允许值</td>
+<td style="text-align: left;">用于约束拟合范围</td>
+</tr>
+<tr>
+<td style="text-align: left;">上界</td>
+<td style="text-align: left;">参数的最大允许值</td>
+<td style="text-align: left;">用于约束拟合范围</td>
+</tr>
+<tr>
+<td style="text-align: left;">固定</td>
+<td style="text-align: left;">勾选后该参数不参与拟合</td>
+<td style="text-align: left;">适用于已知值参数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cnls-拟合算法">4.3 CNLS 拟合算法</h3>
+<p>采用 Levenberg-Marquardt（LM）算法 [5, 6]
+进行复非线性最小二乘拟合。</p>
+<h4 id="目标函数">目标函数</h4>
+<p><span class="math display">\[\min_{\mathbf{p}} \sum_{n=1}^{N} w_n
+\left| Z_n(\omega_n) - \hat{Z}_n(\omega_n, \mathbf{p}) \right|^2
+\tag{14}\]</span></p>
+<p>其中 <span class="math inline">\(w_n\)</span> 为 Boukamp 权重：</p>
+<p><span class="math display">\[w_n = \frac{1}{|Z_n|^2}
+\tag{15}\]</span></p>
+<h4 id="levenberg-marquardt-更新">Levenberg-Marquardt 更新</h4>
+<p>LM 算法（Levenberg [5], Marquardt
+[6]）结合了梯度下降法（远离最优解时）和高斯-牛顿法（接近最优解时）：</p>
+<p><span class="math display">\[(J^T W J + \lambda \cdot \text{diag}(J^T
+W J)) \Delta\mathbf{p} = J^T W (\mathbf{Z} - \hat{\mathbf{Z}})
+\tag{16}\]</span></p>
+<p>其中 <span class="math inline">\(J\)</span> 为 Jacobian
+矩阵（复数阻抗对各参数的偏导），<span
+class="math inline">\(\lambda\)</span>
+为阻尼参数，在迭代过程中动态调整。</p>
+<h3 id="拟合结果解读">4.4 拟合结果解读</h3>
+<table>
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+<col style="width: 31%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">统计指标</th>
+<th style="text-align: left;">定义</th>
+<th style="text-align: left;">范围</th>
+<th style="text-align: left;">评价标准</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><span
+class="math inline">\(\chi^2\)</span> 卡方</td>
+<td style="text-align: left;"><span class="math inline">\(\sum w_n\lvert
+Z - \hat{Z} \rvert^2\)</span></td>
+<td style="text-align: left;"><span
+class="math inline">\(&gt;0\)</span></td>
+<td style="text-align: left;">越小越好</td>
+</tr>
+<tr>
+<td style="text-align: left;"><span
+class="math inline">\(\chi^2_\nu\)</span> 约化卡方</td>
+<td style="text-align: left;"><span class="math inline">\(\chi^2 / (N -
+M)\)</span></td>
+<td style="text-align: left;"><span
+class="math inline">\(&gt;0\)</span></td>
+<td style="text-align: left;">接近 1 为最优</td>
+</tr>
+<tr>
+<td style="text-align: left;"><span class="math inline">\(R^2\)</span>
+决定系数</td>
+<td style="text-align: left;"><span class="math inline">\(1 - \sum w_n
+\lvert Z - \hat{Z}\rvert^2 / \sum w_n\lvert Z -
+\bar{Z}\rvert^2\)</span></td>
+<td style="text-align: left;"><span class="math inline">\((-\infty,
+1]\)</span></td>
+<td style="text-align: left;">接近 1 为最优</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>残差 <span
+class="math inline">\(\Delta_{\text{re}},
+\Delta_{\text{im}}\)</span></strong></td>
+<td style="text-align: left;"><span class="math inline">\((Z -
+\hat{Z})/\lvert Z\rvert\)</span></td>
+<td style="text-align: left;"><span
+class="math inline">\(\%\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\pm
+5\%\)</span> 以内合格</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="drt-dct-标签页">5. DRT-DCT 标签页</h2>
+<p>本标签页提供 <strong>7 种</strong> 分布反演方法，数据源为 Data
+标签页筛选后的频率/阻抗。左侧按方法自动切换参数面板；右侧含「分布谱图」「残差分析」两个绘图页签。求解后可在统计区查看参数与残差，并导出
+Excel。</p>
+<h3 id="方法总览与界面">5.1 方法总览与界面</h3>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 23%" />
+<col style="width: 29%" />
+<col style="width: 29%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">方法</th>
+<th style="text-align: left;">求解器</th>
+<th style="text-align: left;">主要输出</th>
+<th style="text-align: left;">参数面板</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>DRT</strong></td>
+<td style="text-align: left;">Tikhonov + QP（cvxopt）</td>
+<td style="text-align: left;"><span
+class="math inline">\(g(\tau)\)</span>、<span
+class="math inline">\(R_0\)</span>、可选 <span
+class="math inline">\(C\)</span></td>
+<td style="text-align: left;">Parameters set</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>DCT</strong></td>
+<td style="text-align: left;">同上（导纳空间）</td>
+<td style="text-align: left;"><span
+class="math inline">\(g_{\text{DCT}}(\tau)\)</span>、<span
+class="math inline">\(G_\infty\)</span>、<span
+class="math inline">\(C_\infty\)</span></td>
+<td style="text-align: left;">Parameters set</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>gDRT</strong></td>
+<td style="text-align: left;">同上（RC+RL 双核）</td>
+<td style="text-align: left;"><span
+class="math inline">\(g_{\text{rc}}\)</span>、<span
+class="math inline">\(g_{\text{rl}}\)</span>、<span
+class="math inline">\(f_0\)</span></td>
+<td style="text-align: left;">Parameters set</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>DRT-DOP</strong></td>
+<td style="text-align: left;">QPHB（hybrid-drt）</td>
+<td style="text-align: left;">DRT + DOP</td>
+<td style="text-align: left;">DRT-DOP/DDT parameters</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>DRT-DDT</strong></td>
+<td style="text-align: left;">QPHB</td>
+<td style="text-align: left;">DRT + DDT</td>
+<td style="text-align: left;">同上</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>DOP</strong></td>
+<td style="text-align: left;">QPHB</td>
+<td style="text-align: left;">纯 <span
+class="math inline">\(\rho(\nu)\)</span></td>
+<td style="text-align: left;">同上（DRT 控件禁用）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>DDT</strong></td>
+<td style="text-align: left;">QPHB</td>
+<td style="text-align: left;">纯 <span
+class="math inline">\(q(\tau_D)\)</span> 或 2D <span
+class="math inline">\(q(\tau_D,p)\)</span></td>
+<td style="text-align: left;">同上（DRT 控件禁用）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>界面行为：</strong></p>
+<ul>
+<li>切换 <strong>DRT/DCT/gDRT</strong> ↔︎ <strong>DOP/DDT 系列</strong>
+时，参数组可见性自动切换；用户已改参数<strong>不会被重置</strong>。</li>
+<li>纯 DOP / 纯 DDT 时，DRT
+专属控件（basis、ppd、extend、<code>DRT_l2_λ0</code>）禁用，统计/导出也不列出这些项。</li>
+<li><code>fit_ddt_p</code> 与 <code>fit_ddt_2d</code>
+在界面上互斥（勾选其一自动取消另一）。</li>
+<li>legacy 方法在 GCV/mGCV/L
+曲线下，统计面板显示<strong>实际使用的</strong>
+<code>lambda</code>（<code>lambda_used</code>）。</li>
+</ul>
+<hr />
+<h3 id="drt-dct-gdrttikhonov-qp">5.2 DRT / DCT / gDRT（Tikhonov +
+QP）</h3>
+<h4 id="drt阻抗空间弛豫时间分布">5.2.1 DRT（阻抗空间弛豫时间分布）</h4>
+<p>DRT（Wan et al. [3]）将阻抗谱分解为一系列 RC 元件的分布：</p>
+<p><span class="math display">\[Z(\omega) = R_0 + \frac{1}{j\omega C} +
+\int_{-\infty}^{\infty} \frac{g(\tau)}{1 + j\omega\tau} d\ln\tau
+\tag{17}\]</span></p>
+<h5 id="drt-的两种等价形式">DRT 的两种等价形式</h5>
+<p><strong>形式 A（<span class="math inline">\(d\tau\)</span>
+空间）：</strong> <span class="math display">\[Z(\omega) = R_0 +
+\frac{1}{j\omega C} + \int_{0}^{\infty} \frac{\gamma(\tau)}{1 +
+j\omega\tau} d\tau\]</span> <span
+class="math inline">\(\gamma(\tau)\)</span> 单位：<span
+class="math inline">\(\Omega\)</span>/s</p>
+<p><strong>形式 B（<span class="math inline">\(d\ln\tau\)</span>
+空间）：</strong> <span class="math display">\[Z(\omega) = R_0 +
+\frac{1}{j\omega C} + \int_{-\infty}^{\infty} \frac{g(\tau)}{1 +
+j\omega\tau} d\ln\tau\]</span> <span class="math inline">\(g(\tau) =
+\tau \cdot \gamma(\tau)\)</span>，单位：<span
+class="math inline">\(\Omega\)</span>/lnτ-decade</p>
+<p><strong>本软件采用形式 B</strong>。对单个 RC 回路，<span
+class="math inline">\(\int g(\tau)\,d\ln\tau = R\)</span>。</p>
+<h5 id="pwl-离散化">PWL 离散化</h5>
+<p><span class="math display">\[\int_{-\infty}^{\infty} \frac{g(\tau)}{1
++ j\omega\tau} d\ln\tau \approx \sum_{k=1}^{M} \frac{g_k}{1 +
+j\omega\tau_k} \Delta_k \tag{18}\]</span></p>
+<p><span class="math display">\[\Delta_k = \frac{1}{2} \ln
+\frac{\tau_{k+1}}{\tau_{k-1}} \tag{19}\]</span></p>
+<p><span class="math display">\[A_{\text{re}}[n,k] = \frac{1}{1 +
+(\omega_n\tau_k)^2} \cdot \Delta_k,\quad
+A_{\text{im}}[n,k] = \frac{-\omega_n\tau_k}{1 + (\omega_n\tau_k)^2}
+\cdot \Delta_k \tag{20–22}\]</span></p>
+<h5 id="rbf-离散化">RBF 离散化</h5>
+<p><span class="math display">\[g(\ln\tau) = \sum_{m=1}^{M} x_m
+\phi_m(\ln\tau),\quad
+\phi_m(\ln\tau) = \phi(\epsilon\,(\ln\tau - \ln\tau_m))\]</span></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">基函数</th>
+<th style="text-align: left;">形式 <span
+class="math inline">\(\phi(\epsilon x)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Gaussian</td>
+<td style="text-align: left;"><span
+class="math inline">\(\exp(-(\epsilon x)^2)\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">C0 / C2 / C4 / C6 Matérn</td>
+<td style="text-align: left;">标准 Matérn 族</td>
+</tr>
+<tr>
+<td style="text-align: left;">Inverse Quadratic</td>
+<td style="text-align: left;"><span class="math inline">\(1/(1+(\epsilon
+x)^2)\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">Inverse Quadric</td>
+<td style="text-align: left;"><span
+class="math inline">\(1/\sqrt{1+(\epsilon x)^2}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">Cauchy</td>
+<td style="text-align: left;"><span
+class="math inline">\(1/(1+\lvert\epsilon x\rvert)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>形状控制：</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">方式</th>
+<th style="text-align: left;">公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">FWHM 系数（默认）</td>
+<td style="text-align: left;"><span
+class="math inline">\(\epsilon\)</span> 由 coeff 与网格间距换算，默认
+coeff = 0.5</td>
+</tr>
+<tr>
+<td style="text-align: left;">形状因子</td>
+<td style="text-align: left;"><span class="math inline">\(\epsilon =
+\text{coeff}\)</span> 直接指定</td>
+</tr>
+</tbody>
+</table>
+<p>DCT 与 gDRT 同样支持 RBF：DCT 用导纳核；gDRT 的 RC 用阻抗核、RL
+用导纳核。</p>
+<h5 id="配点策略">配点策略</h5>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">策略</th>
+<th style="text-align: left;">配点</th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>logspace 网格</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\tau\)</span>
+对数均匀 <span class="math inline">\(N_{\tau}\)</span>
+点，频率范围上下各扩 1 decade</td>
+<td style="text-align: left;">由 <code>Number of τ</code> 控制（默认
+400）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>τ =
+1/f（数据对齐，默认）</strong></td>
+<td style="text-align: left;"><span
+class="math inline">\(\tau=1/f\)</span>，点数 = <span
+class="math inline">\(N_f\)</span></td>
+<td style="text-align: left;">与 pyDRTtools / pyimpspec 一致</td>
+</tr>
+</tbody>
+</table>
+<p>选「τ = 1/f」时 <code>N_tau</code> 自动禁用。RBF 输出经更密
+<code>tau_fine</code> 插值显示。</p>
+<h5 id="权重方案">权重方案</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">权重</th>
+<th style="text-align: left;">公式</th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Boukamp</strong></td>
+<td style="text-align: left;"><span class="math inline">\(w_n = 1/\lvert
+Z_n\rvert^2\)</span></td>
+<td style="text-align: left;">相对误差加权</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>无（不加权，默认）</strong></td>
+<td style="text-align: left;"><span class="math inline">\(w_n =
+1\)</span></td>
+<td style="text-align: left;">与 pyimpspec/pyDRTtools 一致</td>
+</tr>
+</tbody>
+</table>
+<h5 id="模型项与正则化阶数">模型项与正则化阶数</h5>
+<ul>
+<li><strong>含 1/(jωC) 项</strong>（仅 DRT，默认勾选）：<span
+class="math inline">\(R_0 + 1/(j\omega C) +
+\text{DRT}\)</span>；取消则为 <span class="math inline">\(R_\infty +
+\text{DRT}\)</span></li>
+<li><strong>导数阶数</strong>：Tikhonov 罚项 2 阶（默认）或 1 阶</li>
+</ul>
+<h5 id="正则化参数-λ-的选择">正则化参数 λ 的选择</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">方式</th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>手动（固定）</strong>（默认）</td>
+<td style="text-align: left;">使用 Fix λ 输入值</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GCV / mGCV / L曲线</strong></td>
+<td style="text-align: left;">自动选 λ；统计中显示实际 λ</td>
+</tr>
+</tbody>
+</table>
+<p>自动方式下 Fix λ 作为初值（钳制在 <span
+class="math inline">\([10^{-7},10^0]\)</span>）。</p>
+<h5 id="tikhonov-正则化与-qp">Tikhonov 正则化与 QP</h5>
+<p><span class="math display">\[\min_{\mathbf{g} \ge 0} \left\|
+\mathbf{A}\mathbf{g} - \mathbf{b} \right\|_W^2 + \lambda \|
+\mathbf{L}\mathbf{g} \|^2 \tag{23}\]</span></p>
+<p><span class="math display">\[\min_{\mathbf{x}}
+\frac{1}{2}\mathbf{x}^T\mathbf{P}\mathbf{x} +
+\mathbf{q}^T\mathbf{x},\quad \mathbf{x}\ge 0 \tag{24}\]</span></p>
+<p><span class="math display">\[\mathbf{P} =
+2(\mathbf{A}^T\mathbf{W}^T\mathbf{W}\mathbf{A} + \lambda
+\mathbf{L}^T\mathbf{L}),\quad
+\mathbf{q} = -2\mathbf{b}^T\mathbf{W}^T\mathbf{W}\mathbf{A}
+\tag{25–26}\]</span></p>
+<p>采用 cvxopt primal-dual interior point 求解。</p>
+<h4 id="dct容性时间分布">5.2.2 DCT（容性时间分布）</h4>
+<p>DCT（Py et al. [9]）在导纳空间 <span
+class="math inline">\(Y=1/Z\)</span> 反演：</p>
+<p><span class="math display">\[Y(\omega) = G_\infty + j\omega C_\infty
++ \int_{0}^{\infty} \frac{j\omega\tau}{1 + j\omega\tau} g_{DCT}(\tau)
+d\ln\tau \tag{27}\]</span></p>
+<p>离散核：</p>
+<p><span class="math display">\[A_{\text{re}}[n,k] =
+\frac{(\omega_n\tau_k)^2}{1 + (\omega_n\tau_k)^2}\Delta\ln\tau_k,\quad
+A_{\text{im}}[n,k] = \frac{\omega_n\tau_k}{1 +
+(\omega_n\tau_k)^2}\Delta\ln\tau_k \tag{29–30}\]</span></p>
+<p><strong>理论优势</strong>：FLW / FSW / 半无限 Warburg
+的导纳均可严格写成 DCT 的 Maxwell 并联结构，故 DCT
+尤其适用于扩散主导数据。数值流程（离散 + Tikhonov + QP）与 DRT
+相同。</p>
+<h4 id="gdrt广义-drt">5.2.3 gDRT（广义 DRT）</h4>
+<p>gDRT（Danzer [10], Plank et al. [8]）同时处理 RC 与 RL：</p>
+<p><span class="math display">\[Z(\omega) = R_0 + \frac{1}{j\omega C} +
+j\omega L_0
++ \int_{\tau_{\text{rc}}} \frac{g_{\text{rc}}(\tau)}{1 + j\omega\tau}
+d\ln\tau
++ \int_{\tau_{\text{rl}}} \frac{g_{\text{rl}}(\tau)\,(j\omega\tau)}{1 +
+j\omega\tau} d\ln\tau \tag{30}\]</span></p>
+<ul>
+<li><strong>RC 核</strong>：<span
+class="math inline">\(A_{\text{re}}=1/(1+(\omega\tau)^2)\)</span>，<span
+class="math inline">\(A_{\text{im}}=-\omega\tau/(1+(\omega\tau)^2)\)</span></li>
+<li><strong>RL 核</strong>：<span
+class="math inline">\(A_{\text{re}}=(\omega\tau)^2/(1+(\omega\tau)^2)\)</span>，<span
+class="math inline">\(A_{\text{im}}=\omega\tau/(1+(\omega\tau)^2)\)</span></li>
+</ul>
+<p>零交点 <span class="math inline">\(f_0\)</span> 由 <span
+class="math inline">\(\text{Im}(Z)\)</span> 符号变化线性插值得到；<span
+class="math inline">\(\tau_0=1/(2\pi f_0)\)</span>
+在谱图中以虚线标出。RC/RL 的 <span class="math inline">\(\tau\)</span>
+范围按 <span class="math inline">\(-\text{Im}(Z)\)</span>
+符号带自适应，靠近 <span class="math inline">\(f_0\)</span>
+一端不扩展。</p>
+<h4 id="legacy-共用参数速查">5.2.4 legacy 共用参数速查</h4>
+<table>
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 33%" />
+<col style="width: 15%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">参数</th>
+<th style="text-align: left;">典型范围</th>
+<th style="text-align: center;">默认</th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><span
+class="math inline">\(\lambda\)</span></td>
+<td style="text-align: left;"><span
+class="math inline">\(10^{-5}\sim10^{-2}\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(10^{-3}\)</span></td>
+<td style="text-align: left;">越大分布越平滑</td>
+</tr>
+<tr>
+<td style="text-align: left;">λ 选择</td>
+<td style="text-align: left;">手动/GCV/mGCV/L曲线</td>
+<td style="text-align: center;">手动</td>
+<td style="text-align: left;">自动时统计显示实际 λ</td>
+</tr>
+<tr>
+<td style="text-align: left;">Number of τ</td>
+<td style="text-align: left;"><span
+class="math inline">\(100\sim500\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(400\)</span></td>
+<td style="text-align: left;">仅 logspace 策略有效</td>
+</tr>
+<tr>
+<td style="text-align: left;">配点策略</td>
+<td style="text-align: left;">logspace / τ=1/f</td>
+<td style="text-align: center;"><strong>τ=1/f</strong></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Weight</td>
+<td style="text-align: left;">Boukamp / 无</td>
+<td style="text-align: center;"><strong>无</strong></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">RBF type</td>
+<td style="text-align: left;">PWL + 8 种 RBF</td>
+<td style="text-align: center;">PWL</td>
+<td style="text-align: left;">非 PWL 时形状控件启用</td>
+</tr>
+<tr>
+<td style="text-align: left;">Derivative order</td>
+<td style="text-align: left;">1 / 2</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">含 1/(jωC)</td>
+<td style="text-align: left;">开/关</td>
+<td style="text-align: center;">开</td>
+<td style="text-align: left;">仅 DRT</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="drt-dop-drt-ddt-dop-ddtqphb">5.3 DRT-DOP / DRT-DDT / DOP /
+DDT（QPHB）</h3>
+<p>算法移植自 <a
+href="https://github.com/jdhuang-csm/hybrid-drt">hybrid-drt</a>，采用
+<strong>QPHB</strong>（分层贝叶斯）迭代正则化，与 §5.2 的单一 <span
+class="math inline">\(\lambda\)</span>·二阶 Tikhonov
+<strong>结构不同</strong>，数值上不可简单换算。</p>
+<h4 id="总模型">5.3.1 总模型</h4>
+<p><span class="math display">\[Z(\omega) = R_\infty + j\omega L +
+\frac{C_{\text{inv}}}{j\omega}
++ Z_{\text{DRT}}(\omega) + Z_{\text{DOP}}(\omega) +
+Z_{\text{DDT}}(\omega)\]</span></p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">分量</th>
+<th style="text-align: left;">公式</th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">DRT</td>
+<td style="text-align: left;"><span class="math inline">\(\int
+g(\tau)/(1+j\omega\tau)\,d\ln\tau\)</span></td>
+<td style="text-align: left;">基函数：gaussian / delta / Cole-Cole /
+pwl</td>
+</tr>
+<tr>
+<td style="text-align: left;">DOP</td>
+<td style="text-align: left;"><span class="math inline">\(\int
+\rho(\nu)\,(j\omega)^\nu\,d\nu\)</span></td>
+<td style="text-align: left;">相位角（phasance）分布</td>
+</tr>
+<tr>
+<td style="text-align: left;">DDT</td>
+<td style="text-align: left;"><span class="math inline">\(\sum_n q_n
+Z_{\text{kernel}}(\omega,\tau_{D,n})\)</span></td>
+<td style="text-align: left;">扩散时间分布</td>
+</tr>
+</tbody>
+</table>
+<p>方法开关：<code>DRT-DOP</code> = DRT+DOP；<code>DRT-DDT</code> =
+DRT+DDT；<code>DOP</code> / <code>DDT</code> 为单独分量。</p>
+<h4 id="ddt-核与求解模式">5.3.2 DDT 核与求解模式</h4>
+<p>核变量 <span class="math inline">\(u=(j\omega\tau_D)^p\)</span>：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">类型</th>
+<th style="text-align: left;">边界</th>
+<th style="text-align: left;">阻抗</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Reflective boundary planar</td>
+<td style="text-align: left;"><span
+class="math inline">\(\coth(u)/u\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">Reflective boundary cylindrical</td>
+<td style="text-align: left;"><span
+class="math inline">\(I_0(u)/(u\,I_1(u))\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">Transmissive boundary planar</td>
+<td style="text-align: left;"><span
+class="math inline">\(\tanh(u)/u\)</span></td>
+</tr>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 31%" />
+<col style="width: 37%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: center;">fit_ddt_p</th>
+<th style="text-align: center;">fit_ddt_2d</th>
+<th style="text-align: left;">模式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">否（默认）</td>
+<td style="text-align: left;">1D DDT，固定 <span
+class="math inline">\(p=0.5\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">是</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: left;">1D DDT，标量 <span
+class="math inline">\(p\in[0.05,0.5]\)</span> 优化</td>
+</tr>
+<tr>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">是</td>
+<td style="text-align: left;">2D 异常 DDT：<span
+class="math inline">\(q(\tau_D,p)\)</span>，默认 <span
+class="math inline">\(p=\mathrm{linspace}(0.1,0.5,50)\)</span></td>
+</tr>
+</tbody>
+</table>
+<h4 id="主要参数默认与-gui-facade-一致">5.3.3 主要参数（默认与 GUI /
+facade 一致）</h4>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">参数</th>
+<th style="text-align: center;">默认</th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>fit_ohmic</code></td>
+<td style="text-align: center;">是</td>
+<td style="text-align: left;">拟合 <span
+class="math inline">\(R_\infty\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>fit_inductance</code></td>
+<td style="text-align: center;">否</td>
+<td style="text-align: left;">拟合 <span class="math inline">\(j\omega
+L\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>fit_capacitance</code></td>
+<td style="text-align: center;">否</td>
+<td style="text-align: left;">拟合 <span
+class="math inline">\(C_{\text{inv}}/j\omega\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>ddt_kernel_type</code></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">DDT 核 1/2/3</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>fit_ddt_p</code> /
+<code>fit_ddt_2d</code></td>
+<td style="text-align: center;">否 / 否</td>
+<td style="text-align: left;">互斥</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>basis_tau_ddt</code></td>
+<td style="text-align: center;">留空=自动</td>
+<td style="text-align: left;">或 <code>np.logspace(-4,4,40)</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">DRT basis / tau grid ppd / Extend
+decade</td>
+<td style="text-align: center;">gaussian / 10 / 1</td>
+<td style="text-align: left;">仅含 DRT 的方法</td>
+</tr>
+<tr>
+<td
+style="text-align: left;"><strong><code>DRT_l2_λ0</code></strong></td>
+<td style="text-align: center;"><strong>140</strong></td>
+<td style="text-align: left;">DRT 块 QPHB 全局尺度</td>
+</tr>
+<tr>
+<td
+style="text-align: left;"><strong><code>DDT_l2_λ0</code></strong></td>
+<td style="text-align: center;"><strong>1.0</strong></td>
+<td style="text-align: left;">DDT 块</td>
+</tr>
+<tr>
+<td
+style="text-align: left;"><strong><code>DOP_l2_λ0</code></strong></td>
+<td style="text-align: center;"><strong>10</strong></td>
+<td style="text-align: left;">DOP 块</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>rp_scale</code></td>
+<td style="text-align: center;">50</td>
+<td style="text-align: left;">数据缩放目标 Rp</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>max_iter</code></td>
+<td style="text-align: center;">30</td>
+<td style="text-align: left;">QPHB 外迭代上限</td>
+</tr>
+</tbody>
+</table>
+<p><strong>关于 λ0 与 legacy λ：</strong><br />
+QPHB 的 <code>l2_lambda_0</code> 是 0/1/2 阶惩罚之和的全局尺度，并叠加
+<code>derivative_weights</code>、自适应 <span
+class="math inline">\(\rho_k\)</span> 与局部 <span
+class="math inline">\(s_k\)</span>，与 legacy 的单一二阶 <span
+class="math inline">\(\lambda\)</span>
+<strong>无精确倍率关系</strong>。三者默认比约为 DRT:DOP:DDT =
+140:10:1。</p>
+<h4 id="绘图与导出">5.3.4 绘图与导出</h4>
+<ul>
+<li><strong>联合</strong>（DRT-DOP / DRT-DDT）：顶行 DRT 占两列，DOP/DDT
+占一列；底行 Nyquist + Re/Im。</li>
+<li><strong>纯 DOP / DDT</strong>：顶行整行对应分布；2D DDT 为 <span
+class="math inline">\(\tau_D\)</span>–<span
+class="math inline">\(p\)</span> 热图 + <span
+class="math inline">\(p\)</span> 边缘曲线。</li>
+<li>导出
+Excel：<code>Statistics</code>（参数与残差）、<code>experiment_Z</code>、<code>Reconstructed_Z</code>，以及
+DRT/DOP/DDT 分布表（若有）。</li>
+</ul>
+<hr />
+<h3 id="结果解读-1">5.4 结果解读</h3>
+<h4 id="分布谱图">分布谱图</h4>
+<ul>
+<li><strong>DRT</strong>：<span class="math inline">\(g(\tau)\)</span>
+vs <span class="math inline">\(\tau\)</span>，峰位 ≈ 时间常数，峰高 ≈
+过程电阻</li>
+<li><strong>gDRT</strong>：蓝 = RC，粉 = RL，灰虚线 = <span
+class="math inline">\(\tau_0\)</span></li>
+<li><strong>DOP</strong>：<span class="math inline">\(\rho(\nu)\)</span>
+vs <span class="math inline">\(\nu\)</span>；<span
+class="math inline">\(\nu=-0.5\)</span> 虚线对应理想 Warburg</li>
+<li><strong>DDT</strong>：<span class="math inline">\(q(\tau_D)\)</span>
+或 2D 热图</li>
+</ul>
+<h4 id="重构与残差">重构与残差</h4>
+<p>Nyquist / Bode 对比实验与重构；归一化残差 <span
+class="math inline">\(\Delta/\lvert Z\rvert\)</span> 宜在 <span
+class="math inline">\(\pm 5\%\)</span> 内随机分布。</p>
+<hr />
+<h3 id="方法选择指南">5.5 方法选择指南</h3>
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">方法</th>
+<th style="text-align: left;">适用</th>
+<th style="text-align: left;">不适用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>DRT</strong></td>
+<td style="text-align: left;">容性主导 EIS</td>
+<td style="text-align: left;">强电感主导</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>DCT</strong></td>
+<td style="text-align: left;">扩散主导、高频低阻抗</td>
+<td style="text-align: left;">极低阻抗噪声导致 <span
+class="math inline">\(Y\)</span> 爆炸</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>gDRT</strong></td>
+<td style="text-align: left;">同时含电感区+电容区</td>
+<td style="text-align: left;">单侧频带过窄</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>DRT-DOP / DOP</strong></td>
+<td style="text-align: left;">CPE、分数阶、相位角连续分布</td>
+<td style="text-align: left;">仅需经典 RC 峰时可用 DRT</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>DRT-DDT / DDT</strong></td>
+<td style="text-align: left;">有限/半无限扩散、多孔电极扩散</td>
+<td style="text-align: left;">无扩散特征时不必启用</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>2D DDT</strong></td>
+<td style="text-align: left;">异常扩散（<span
+class="math inline">\(p\neq 0.5\)</span>）</td>
+<td style="text-align: left;">数据点过少、噪声大</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="simulation-标签页">6. Simulation 标签页</h2>
+<h3 id="模型选择">6.1 模型选择</h3>
+<p>与 Fit 标签页共享相同的模型选择控件，包括：</p>
+<ul>
+<li>拓扑类型：Z 型、P 型、T 型</li>
+<li>边界条件：P-Q、P-P、O-O、O-P、W-P、W-O、P-W、O-W</li>
+<li>特殊选项：短路模式、<span class="math inline">\(zC = 0\)</span>
+模式</li>
+</ul>
+<h3 id="参数设置">6.2 参数设置</h3>
+<p>参数表包含 3
+列：<code>参数名 | 值 | 单位</code>。用户手动调整各参数值，点击「计算」后软件根据当前模型和参数计算阻抗谱。</p>
+<h3 id="频率扫描">6.3 频率扫描</h3>
+<p>频率范围和密度可调：</p>
+<ul>
+<li><code>f_min</code>：起始频率（<span class="math inline">\(10^{-5}
+\sim 10^6\)</span> Hz）</li>
+<li><code>f_max</code>：截止频率（<span class="math inline">\(10^{-5}
+\sim 10^6\)</span> Hz）</li>
+<li>点/dec：每数量级的数据点数（<span class="math inline">\(5 \sim
+200\)</span>）</li>
+</ul>
+<p>频率轴按对数均匀分布：</p>
+<p><span class="math display">\[f_{\text{scan}} = \log_{10}^{-1}\left(
+\log_{10} f_{\min},\, \log_{10} f_{\max},\, N_{\text{pts}} \right)
+\tag{34}\]</span></p>
+<h3 id="阻抗计算与可视化">6.4 阻抗计算与可视化</h3>
+<p>点击「计算」后软件：</p>
+<ol type="1">
+<li>从元件编辑器解析电路表达式</li>
+<li>遍历频率扫描数组，计算各频率下的阻抗 <span
+class="math inline">\(Z(\omega)\)</span></li>
+<li>绘制 4 个子图：</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">位置</th>
+<th style="text-align: left;">图形</th>
+<th style="text-align: left;">横轴</th>
+<th style="text-align: left;">纵轴</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">(1,1)</td>
+<td style="text-align: left;">Nyquist 图</td>
+<td style="text-align: left;"><span
+class="math inline">\(Z&#39;\)</span></td>
+<td style="text-align: left;"><span
+class="math inline">\(-Z&#39;&#39;\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">(1,2)</td>
+<td style="text-align: left;">Bode 幅值图</td>
+<td style="text-align: left;"><span
+class="math inline">\(f\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\lvert
+Z\rvert\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">(2,1)</td>
+<td style="text-align: left;">相位图</td>
+<td style="text-align: left;"><span
+class="math inline">\(f\)</span></td>
+<td style="text-align: left;"><span
+class="math inline">\(-\arctan(Z&#39;&#39;/Z&#39;)\)</span> (°)</td>
+</tr>
+<tr>
+<td style="text-align: center;">(2,2)</td>
+<td style="text-align: left;">双轴实虚部图</td>
+<td style="text-align: left;"><span
+class="math inline">\(f\)</span></td>
+<td style="text-align: left;"><span
+class="math inline">\(Z&#39;\)</span>（左轴）+ <span
+class="math inline">\(-Z&#39;&#39;\)</span>（右轴）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="常见问题与故障排除">7. 常见问题与故障排除</h2>
+<h3 id="k-k-校验问题">7.1 K-K 校验问题</h3>
+<table>
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 38%" />
+<col style="width: 38%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">问题</th>
+<th style="text-align: left;">可能原因</th>
+<th style="text-align: left;">解决方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><span
+class="math inline">\(\chi^2\)</span> 过大</td>
+<td style="text-align: left;">数据含电感噪声或高频干扰</td>
+<td style="text-align: left;">启用
+<code>add_ind=True</code>，或增大频率筛选上限</td>
+</tr>
+<tr>
+<td style="text-align: left;"><span class="math inline">\(\mu &lt;
+0.85\)</span></td>
+<td style="text-align: left;">数据不符合 K-K 关系</td>
+<td style="text-align: left;">检查数据质量，增大
+<code>max_M</code>，检查测量中的非稳态效应</td>
+</tr>
+<tr>
+<td style="text-align: left;">拟合耗时过长</td>
+<td style="text-align: left;">max_M 过大或数据点数过多</td>
+<td style="text-align: left;">减小 max_M 至 30-50，或减少数据点数</td>
+</tr>
+<tr>
+<td style="text-align: left;">仅 1 个 RC 元素</td>
+<td style="text-align: left;">算法遭遇数值问题提前停止</td>
+<td style="text-align: left;">增大 mu_cutoff 或改用优化模式</td>
+</tr>
+</tbody>
+</table>
+<h3 id="拟合问题fit">7.2 拟合问题（Fit）</h3>
+<table>
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 38%" />
+<col style="width: 38%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">问题</th>
+<th style="text-align: left;">可能原因</th>
+<th style="text-align: left;">解决方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">拟合不收敛</td>
+<td style="text-align: left;">初始值不当或模型不匹配</td>
+<td
+style="text-align: left;">检查元件表达式，调整参数初始值，解除固定参数约束</td>
+</tr>
+<tr>
+<td style="text-align: left;">参数趋近边界</td>
+<td style="text-align: left;">模型与数据不匹配</td>
+<td style="text-align: left;">放宽参数上下界，或更换更合适的模型</td>
+</tr>
+<tr>
+<td style="text-align: left;">残差过大或呈系统性</td>
+<td style="text-align: left;">模型阶次不足</td>
+<td style="text-align: left;">增加元件复杂度，或考虑使用 DRT
+做无模型分析</td>
+</tr>
+<tr>
+<td style="text-align: left;">报错奇异矩阵</td>
+<td style="text-align: left;">参数之间存在强相关性</td>
+<td style="text-align: left;">固定部分参数，减少自由参数数量</td>
+</tr>
+</tbody>
+</table>
+<h3 id="drt-dop-ddt-反演问题">7.3 DRT / DOP / DDT 反演问题</h3>
+<table>
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 38%" />
+<col style="width: 38%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">问题</th>
+<th style="text-align: left;">可能原因</th>
+<th style="text-align: left;">解决方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><span
+class="math inline">\(\gamma(\tau)\)</span> 出现密集尖刺</td>
+<td style="text-align: left;"><span
+class="math inline">\(\lambda\)</span> 过小</td>
+<td style="text-align: left;">增大 <span
+class="math inline">\(\lambda\)</span> (1e-3 ~ 1e-2)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><span
+class="math inline">\(\gamma(\tau)\)</span> 过于平滑无峰</td>
+<td style="text-align: left;"><span
+class="math inline">\(\lambda\)</span> 过大</td>
+<td style="text-align: left;">减小 <span
+class="math inline">\(\lambda\)</span> (1e-5 ~ 1e-4)</td>
+</tr>
+<tr>
+<td style="text-align: left;">边界处 <span
+class="math inline">\(\gamma\)</span> 异常抬升</td>
+<td style="text-align: left;">端点振荡效应</td>
+<td style="text-align: left;">增加 <span
+class="math inline">\(\tau\)</span> 范围或改用 τ=1/f 策略</td>
+</tr>
+<tr>
+<td style="text-align: left;">gDRT 求解失败</td>
+<td style="text-align: left;">电感区或电容区数据不足</td>
+<td style="text-align: left;">检查频率范围是否覆盖零交点两侧</td>
+</tr>
+<tr>
+<td style="text-align: left;">cvxopt <code>domain error</code></td>
+<td style="text-align: left;">P 矩阵接近奇异</td>
+<td style="text-align: left;">增大 <span
+class="math inline">\(\lambda\)</span> 或减少 <span
+class="math inline">\(N_{\tau}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">DCT 结果不稳定</td>
+<td style="text-align: left;">小阻抗导致导纳爆炸</td>
+<td style="text-align: left;">改用 DRT，或预处理数据</td>
+</tr>
+<tr>
+<td style="text-align: left;">QPHB 分布过尖/过噪</td>
+<td style="text-align: left;"><code>*_l2_λ0</code> 过小</td>
+<td style="text-align: left;">增大对应块 λ0（如
+DRT_l2_λ0、DOP_l2_λ0）</td>
+</tr>
+<tr>
+<td style="text-align: left;">QPHB 分布过平</td>
+<td style="text-align: left;"><code>*_l2_λ0</code> 过大</td>
+<td style="text-align: left;">减小对应块 λ0</td>
+</tr>
+<tr>
+<td style="text-align: left;">fit_ddt_p 与 2d 冲突</td>
+<td style="text-align: left;">同时勾选</td>
+<td style="text-align: left;">界面已互斥；只保留其一</td>
+</tr>
+<tr>
+<td style="text-align: left;">切换方法后参数“丢了”</td>
+<td style="text-align: left;">—</td>
+<td
+style="text-align: left;">切换不再重置用户设置；检查是否切到另一参数面板</td>
+</tr>
+</tbody>
+</table>
+<h3 id="通用问题">7.4 通用问题</h3>
+<table>
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 38%" />
+<col style="width: 38%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">问题</th>
+<th style="text-align: left;">可能原因</th>
+<th style="text-align: left;">解决方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">导入数据后无显示</td>
+<td style="text-align: left;">列格式不兼容</td>
+<td style="text-align: left;">检查 CSV
+是否包含表头，分隔符是否为逗号/制表符</td>
+</tr>
+<tr>
+<td style="text-align: left;">图表无法放大</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">使用 matplotlib
+工具栏的放大镜工具框选区域</td>
+</tr>
+<tr>
+<td style="text-align: left;">导出 Excel 报错</td>
+<td style="text-align: left;">缺少 openpyxl</td>
+<td style="text-align: left;">执行
+<code>pip install openpyxl</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">cvxopt 安装失败</td>
+<td style="text-align: left;">编译环境问题</td>
+<td style="text-align: left;">从 https://cvxopt.org/install/ 下载预编译
+wheel</td>
+</tr>
+</tbody>
+</table>
+<h3 id="参数推荐值速查">7.5 参数推荐值速查</h3>
+<table>
+<colgroup>
+<col style="width: 32%" />
+<col style="width: 16%" />
+<col style="width: 33%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">参数</th>
+<th style="text-align: left;">用途</th>
+<th style="text-align: left;">典型范围</th>
+<th style="text-align: center;">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><span
+class="math inline">\(\lambda\)</span> (DRT/DCT)</td>
+<td style="text-align: left;">Tikhonov 强度</td>
+<td style="text-align: left;"><span class="math inline">\(10^{-5} \sim
+10^{-2}\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(10^{-3}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><span
+class="math inline">\(\lambda\)</span> (gDRT)</td>
+<td style="text-align: left;">Tikhonov 强度</td>
+<td style="text-align: left;"><span class="math inline">\(10^{-5} \sim
+10^{-3}\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(10^{-4}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Number of τ</code></td>
+<td style="text-align: left;">τ 离散点数</td>
+<td style="text-align: left;"><span class="math inline">\(100 \sim
+500\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(400\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Creat τ strategy</code></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: center;">τ=1/f / 无加权</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>DRT_l2_λ0</code></td>
+<td style="text-align: left;">QPHB DRT 块</td>
+<td style="text-align: left;"><span
+class="math inline">\(10\sim300\)</span></td>
+<td style="text-align: center;"><strong>140</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>DOP_l2_λ0</code></td>
+<td style="text-align: left;">QPHB DOP 块</td>
+<td style="text-align: left;"><span
+class="math inline">\(1\sim50\)</span></td>
+<td style="text-align: center;"><strong>10</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>DDT_l2_λ0</code></td>
+<td style="text-align: left;">QPHB DDT 块</td>
+<td style="text-align: left;"><span
+class="math inline">\(0.1\sim10\)</span></td>
+<td style="text-align: center;"><strong>1.0</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>rp_scale</code></td>
+<td style="text-align: left;">数据缩放</td>
+<td style="text-align: left;"><span
+class="math inline">\(10\sim100\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(50\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>max_iter</code></td>
+<td style="text-align: left;">QPHB 迭代</td>
+<td style="text-align: left;"><span
+class="math inline">\(10\sim100\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(30\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><span
+class="math inline">\(\mu_{\text{cutoff}}\)</span></td>
+<td style="text-align: left;">K-K 阈值</td>
+<td style="text-align: left;"><span class="math inline">\(0.80 \sim
+0.95\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(0.85\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><span
+class="math inline">\(M_{\max}\)</span></td>
+<td style="text-align: left;">K-K 最大 RC</td>
+<td style="text-align: left;"><span class="math inline">\(30 \sim
+100\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(50\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">点/dec</td>
+<td style="text-align: left;">仿真频率密度</td>
+<td style="text-align: left;"><span class="math inline">\(5 \sim
+200\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(50\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="方法选择指南-1">7.6 方法选择指南</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 31%" />
+<col style="width: 35%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">方法</th>
+<th style="text-align: left;">适用场景</th>
+<th style="text-align: left;">不适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>DRT</strong></td>
+<td style="text-align: left;">容性主导 EIS（电池、腐蚀等）</td>
+<td style="text-align: left;">强电感主导</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>DCT</strong></td>
+<td style="text-align: left;">扩散主导、高频低阻抗</td>
+<td style="text-align: left;">导纳爆炸的极小阻抗噪声</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>gDRT</strong></td>
+<td style="text-align: left;">同时含电感区+电容区</td>
+<td style="text-align: left;">单侧频带过窄</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>DRT-DOP / DOP</strong></td>
+<td style="text-align: left;">CPE、分数阶、相位角连续分布</td>
+<td style="text-align: left;">仅需离散 RC 峰时用 DRT 即可</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>DRT-DDT / DDT</strong></td>
+<td style="text-align: left;">有限/半无限/多孔扩散</td>
+<td style="text-align: left;">无明显扩散特征</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>2D DDT</strong></td>
+<td style="text-align: left;">异常扩散 <span class="math inline">\(p\neq
+0.5\)</span></td>
+<td style="text-align: left;">点少、噪声大</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="参考文献">8. 参考文献</h2>
+<ol type="1">
+<li><p>Schönleber, M., Klotz, D., &amp; Ivers-Tiffée, E. (2014). A
+method for improving the robustness of linear Kramers-Kronig validity
+tests. <em>Electrochimica Acta</em>, 131, 20-27.
+doi:10.1016/j.electacta.2014.02.057</p></li>
+<li><p>Boukamp, B. A. (1995). A linear Kronig-Kramers transform test for
+immittance data validation. <em>Journal of the Electrochemical
+Society</em>, 142(6), 1885. doi:10.1149/1.2044210</p></li>
+<li><p>Wan, T. H., Saccoccio, M., Chen, C., &amp; Ciucci, F. (2015).
+Influence of the discretization methods on the distribution of
+relaxation times deconvolution. <em>Electrochimica Acta</em>, 184,
+483-499. doi:10.1016/j.electacta.2015.09.097</p></li>
+<li><p>Ciucci, F., &amp; Chen, C. (2015). Analysis of electrochemical
+impedance spectroscopy data using the distribution of relaxation times:
+A Bayesian and hierarchical Bayesian approach. <em>Electrochimica
+Acta</em>, 167, 439-454. doi:10.1016/j.electacta.2015.03.123</p></li>
+<li><p>Levenberg, K. (1944). A method for the solution of certain
+non-linear problems in least squares. <em>Quarterly of Applied
+Mathematics</em>, 2(2), 164-168.</p></li>
+<li><p>Marquardt, D. W. (1963). An algorithm for least-squares
+estimation of nonlinear parameters. <em>Journal of the Society for
+Industrial and Applied Mathematics</em>, 11(2), 431-441.</p></li>
+<li><p>Siroma, Z., Fujiwara, N., Yamazaki, S., Asahi, M., Nagai, T.,
+&amp; Ioroi, T. (2015). Mathematical solutions of comprehensive
+variations of a transmission-line model of the theoretical impedance of
+porous electrodes. <em>Electrochimica Acta</em>, 160, 313-322.
+doi:10.1016/j.electacta.2015.02.065</p></li>
+<li><p>Plank, C., Rüther, T., Jahn, L., Schamel, M., Schmidt, J. P.,
+Ciucci, F., &amp; Danzer, M. A. (2024). A review on the distribution of
+relaxation times analysis: A powerful tool for process identification of
+electrochemical systems. <em>Journal of Power Sources</em>, 594, 233845.
+doi:10.1016/j.jpowsour.2023.233845</p></li>
+<li><p>Py, B., Maradesa, A., &amp; Ciucci, F. (2023). Theoretical and
+Experimental Study of the Distribution of Capacitive Times. <em>arXiv
+preprint</em>. GitHub: https://github.com/ciuccislab/EIS-DCT</p></li>
+<li><p>Danzer, M. A. (2019). Generalized Distribution of Relaxation
+Times Analysis for the Characterization of Impedance Spectra.
+<em>Batteries</em>, 5, 53. doi:10.3390/batteries5030053</p></li>
+<li><p>Effat, M. B., &amp; Ciucci, F. (2017). Bayesian and hierarchical
+Bayesian based regularization for deconvolving the distribution of
+relaxation times from electrochemical impedance spectroscopy data.
+<em>Electrochimica Acta</em>, 247, 1117-1129.
+doi:10.1016/j.electacta.2017.07.050</p></li>
+<li><p>Maradesa, A., Py, B., Wan, T. H., Effat, M. B., &amp; Ciucci, F.
+(2023). Selecting the regularization parameter in the distribution of
+relaxation times. <em>Journal of the Electrochemical Society</em>, 170,
+030502. doi:10.1149/1945-7111/acbca4</p></li>
+<li><p>Vogelsang, J., &amp; Schiller, C. A. (2000). A new approach for
+the evaluation of impedance data by means of the Kramers-Kronig
+transformation. <em>Electrochimica Acta</em>, 45(22-23),
+3837-3845.</p></li>
+</ol>
+<hr />
+<h2 id="附录术语表">附录：术语表</h2>
+<table>
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 22%" />
+<col style="width: 69%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">术语</th>
+<th style="text-align: left;">英文</th>
+<th style="text-align: left;">解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">电化学阻抗谱</td>
+<td style="text-align: left;">EIS</td>
+<td
+style="text-align: left;">测量电化学系统在不同频率正弦激励下的阻抗响应</td>
+</tr>
+<tr>
+<td style="text-align: left;">Nyquist 图</td>
+<td style="text-align: left;">Nyquist plot</td>
+<td style="text-align: left;">以 <span
+class="math inline">\(Z&#39;\)</span> 为横轴、<span
+class="math inline">\(-Z&#39;&#39;\)</span> 为纵轴的阻抗复平面图</td>
+</tr>
+<tr>
+<td style="text-align: left;">Bode 图</td>
+<td style="text-align: left;">Bode plot</td>
+<td style="text-align: left;">阻抗模 <span class="math inline">\(\lvert
+Z\rvert\)</span> 和相位角随频率变化的双对数/半对数图</td>
+</tr>
+<tr>
+<td style="text-align: left;">传输线模型</td>
+<td style="text-align: left;">TLM</td>
+<td
+style="text-align: left;">描述多孔电极中离子/电子传输的分布式等效电路模型</td>
+</tr>
+<tr>
+<td style="text-align: left;">弛豫时间分布</td>
+<td style="text-align: left;">DRT</td>
+<td style="text-align: left;">将阻抗谱转化为时间常数域的 <span
+class="math inline">\(\gamma(\tau)\)</span> 分布</td>
+</tr>
+<tr>
+<td style="text-align: left;">容性时间分布</td>
+<td style="text-align: left;">DCT</td>
+<td style="text-align: left;">在导纳空间进行分布反演，基于 <span
+class="math inline">\(Y=G_\infty+j\omega
+C_\infty+\int\frac{j\omega\tau}{1+j\omega\tau}\gamma(\tau)d\ln\tau\)</span>
+模型提取特征时间常数</td>
+</tr>
+<tr>
+<td style="text-align: left;">广义 DRT</td>
+<td style="text-align: left;">gDRT</td>
+<td style="text-align: left;">同时处理容性和感性响应的 DRT 方法</td>
+</tr>
+<tr>
+<td style="text-align: left;">相位角分布</td>
+<td style="text-align: left;">DOP (Distribution of Phasances)</td>
+<td style="text-align: left;"><span
+class="math inline">\(\rho(\nu)\)</span> 对 <span
+class="math inline">\((j\omega)^\nu\)</span> 的分布，描述 CPE
+等分数阶过程</td>
+</tr>
+<tr>
+<td style="text-align: left;">扩散时间分布</td>
+<td style="text-align: left;">DDT (Distribution of Diffusion Times)</td>
+<td style="text-align: left;"><span
+class="math inline">\(q(\tau_D)\)</span>
+对有限/异常扩散核的分布；可扩展为 2D <span
+class="math inline">\(q(\tau_D,p)\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">分层贝叶斯正则化</td>
+<td style="text-align: left;">QPHB</td>
+<td style="text-align: left;">hybrid-drt 中的迭代自适应正则化，按块使用
+l2_λ0</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tikhonov 正则化</td>
+<td style="text-align: left;">Tikhonov regularization</td>
+<td
+style="text-align: left;">通过惩罚解的粗糙度来抑制过拟合的数学方法</td>
+</tr>
+<tr>
+<td style="text-align: left;">二次规划</td>
+<td style="text-align: left;">QP</td>
+<td style="text-align: left;">带线性约束的凸二次优化问题</td>
+</tr>
+<tr>
+<td style="text-align: left;">复非线性最小二乘</td>
+<td style="text-align: left;">CNLS</td>
+<td style="text-align: left;">复数域的非线性曲线拟合方法</td>
+</tr>
+<tr>
+<td style="text-align: left;">Boukamp 加权</td>
+<td style="text-align: left;">Boukamp weighting</td>
+<td style="text-align: left;">权重 <span class="math inline">\(w_n =
+\frac{1}{Z_n^2}\)</span>的加权方案</td>
+</tr>
+<tr>
+<td style="text-align: left;">μ 准则</td>
+<td style="text-align: left;">mu criterion</td>
+<td style="text-align: left;">K-K 校验中衡量拟合物理一致性的指标</td>
+</tr>
+<tr>
+<td style="text-align: left;">K-K 关系</td>
+<td style="text-align: left;">Kramers-Kronig relations</td>
+<td style="text-align: left;">因果系统实部和虚部之间的 Hilbert
+变换关系</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

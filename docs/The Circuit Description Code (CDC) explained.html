@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>-</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<h1 id="基本元器件定义">1 基本元器件定义</h1>
+<p>本软件的基本电路描述符（The Circuit Description Code (CDC)
+）如下：</p>
+<table>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 48%" />
+<col style="width: 23%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: center;">符号</th>
+<th style="text-align: left;">名称</th>
+<th style="text-align: left;">阻抗公式 <span
+class="math inline">\(Z(\omega)\)</span></th>
+<th style="text-align: left;">参数命名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>R</strong></td>
+<td style="text-align: left;">电阻</td>
+<td style="text-align: left;"><span class="math inline">\(Z_R =
+R\)</span></td>
+<td style="text-align: left;"><code>_R</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>C</strong></td>
+<td style="text-align: left;">常相角元件 (CPE)</td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z_C = \frac{1}{C(j\omega)^p}\)</span></td>
+<td style="text-align: left;"><code>_C</code>, <code>_p</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>L</strong></td>
+<td style="text-align: left;">电感</td>
+<td style="text-align: left;"><span class="math inline">\(Z_L = j\omega
+L\)</span></td>
+<td style="text-align: left;"><code>_L</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Wo</strong></td>
+<td style="text-align: left;">有限空间扩散（反射边界）</td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z_{\text{Wo}} = \frac{R_d
+\coth(\sqrt{j\omega\tau_d})}{\sqrt{j\omega\tau_d}}\)</span></td>
+<td style="text-align: left;"><code>_Rd</code>, <code>_tau</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Ws</strong></td>
+<td style="text-align: left;">有限长度扩散（透射边界）</td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z_{\text{Ws}} = \frac{R_d
+\tanh(\sqrt{j\omega\tau_d})}{\sqrt{j\omega\tau_d}}\)</span></td>
+<td style="text-align: left;"><code>_Rd</code>, <code>_tau</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>W</strong></td>
+<td style="text-align: left;">半无限 Warburg 扩散</td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z_W = \frac{A_W}{\sqrt{j\omega}}\)</span></td>
+<td style="text-align: left;"><code>_Aw</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>H</strong></td>
+<td style="text-align: left;">Havriliak-Negami 弛豫</td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z_H = \frac{(1+(j\omega\tau)^a)^b}{j\omega\Delta C}\)</span></td>
+<td style="text-align: left;"><code>_dC</code>, <code>_tau</code>,
+<code>_a</code>, <code>_b</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Ha</strong></td>
+<td style="text-align: left;">HN 替代形式</td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z_{Ha} = \frac{R}{(1+(j\omega\tau)^a)^b}\)</span></td>
+<td style="text-align: left;"><code>_R</code>, <code>_tau</code>,
+<code>_a</code>, <code>_b</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>G</strong></td>
+<td style="text-align: left;">Gerischer</td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z_G = \frac{1}{Y(k+j\omega)^n}\)</span></td>
+<td style="text-align: left;"><code>_Y</code>, <code>_k</code>,
+<code>_n</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Ga</strong></td>
+<td style="text-align: left;">Gerischer 替代形式</td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z_{Ga} = \frac{R}{(1+j\omega\tau)^n}\)</span></td>
+<td style="text-align: left;"><code>_R</code>, <code>_tau</code>,
+<code>_n</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="基本元件语法">1.1 基本元件语法</h2>
+<table>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 36%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">元件</th>
+<th style="text-align: left;">语法</th>
+<th style="text-align: left;">参数</th>
+<th style="text-align: left;">示例</th>
+<th style="text-align: left;">等效电路含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">电阻</td>
+<td style="text-align: left;"><code>R</code></td>
+<td style="text-align: left;"><code>_R</code></td>
+<td style="text-align: left;"><code>R1</code></td>
+<td style="text-align: left;"><span
+class="math inline">\(\text{R}_1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">CPE</td>
+<td style="text-align: left;"><code>C</code></td>
+<td style="text-align: left;"><code>_C</code>, <code>_p</code></td>
+<td style="text-align: left;"><code>C1</code></td>
+<td style="text-align: left;"><span
+class="math inline">\(\text{CPE}_1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">电感</td>
+<td style="text-align: left;"><code>L</code></td>
+<td style="text-align: left;"><code>_L</code></td>
+<td style="text-align: left;"><code>L1</code></td>
+<td style="text-align: left;"><span
+class="math inline">\(\text{L}_1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">有限空间扩散</td>
+<td style="text-align: left;"><code>Wo</code></td>
+<td style="text-align: left;"><code>_Rd</code>, <code>_tau</code></td>
+<td style="text-align: left;"><code>Wo1</code></td>
+<td style="text-align: left;"><span
+class="math inline">\(\text{Wo}_1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">有限长度扩散</td>
+<td style="text-align: left;"><code>Ws</code></td>
+<td style="text-align: left;"><code>_Rd</code>, <code>_tau</code></td>
+<td style="text-align: left;"><code>Ws1</code></td>
+<td style="text-align: left;"><span
+class="math inline">\(\text{Ws}_1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">半无限 Warburg</td>
+<td style="text-align: left;"><code>W</code></td>
+<td style="text-align: left;"><code>_Aw</code></td>
+<td style="text-align: left;"><code>W1</code></td>
+<td style="text-align: left;"><span
+class="math inline">\(\text{W}_1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">Havriliak-Negami</td>
+<td style="text-align: left;"><code>H</code></td>
+<td style="text-align: left;"><code>_dC</code>, <code>_tau</code>,
+<code>_a</code>, <code>_b</code></td>
+<td style="text-align: left;"><code>H1</code></td>
+<td style="text-align: left;"><span
+class="math inline">\(\text{HN}_1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">HN 替代形式</td>
+<td style="text-align: left;"><code>Ha</code></td>
+<td style="text-align: left;"><code>_R</code>, <code>_tau</code>,
+<code>_a</code>, <code>_b</code></td>
+<td style="text-align: left;"><code>Ha1</code></td>
+<td style="text-align: left;"><span
+class="math inline">\(\text{Ha}_1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">Gerischer</td>
+<td style="text-align: left;"><code>G</code></td>
+<td style="text-align: left;"><code>_Y</code>, <code>_k</code>,
+<code>_n</code></td>
+<td style="text-align: left;"><code>G1</code></td>
+<td style="text-align: left;"><span
+class="math inline">\(\text{G}_1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">Gerischer 替代形式</td>
+<td style="text-align: left;"><code>Ga</code></td>
+<td style="text-align: left;"><code>_R</code>, <code>_tau</code>,
+<code>_n</code></td>
+<td style="text-align: left;"><code>Ga1</code></td>
+<td style="text-align: left;"><span
+class="math inline">\(\text{Ga}_1\)</span></td>
+</tr>
+</tbody>
+</table>
+<h2 id="串并联语法规则">1.2 串并联语法规则</h2>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 26%" />
+<col style="width: 52%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">语法</th>
+<th style="text-align: left;">含义</th>
+<th style="text-align: left;">等效表达式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>A-B</code></td>
+<td style="text-align: left;"><strong>串联</strong>：元件 A 与 B
+串联</td>
+<td style="text-align: left;"><span
+class="math inline">\(Z_{\text{total}} = Z_A + Z_B\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>(AB)</code></td>
+<td style="text-align: left;"><strong>并联</strong>：元件 A 与 B
+并联</td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z_{\text{total}} = \frac{1}{1/Z_A + 1/Z_B}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>(ABC...)</code></td>
+<td style="text-align: left;">多元件并联</td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle
+Z_{\text{total}} = \frac{1}{1/Z_A + 1/Z_B + 1/Z_C +
+\cdots}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">括号嵌套</td>
+<td style="text-align: left;">括号内先计算，再与外层组合</td>
+<td style="text-align: left;">见下方案例</td>
+</tr>
+</tbody>
+</table>
+<h2 id="案例">1.3 案例</h2>
+<p><strong>案例 1：两个电阻串联</strong></p>
+<pre><code>R1-R2</code></pre>
+<p>等效电路：<span class="math inline">\(\text{R}_1\)</span> — <span
+class="math inline">\(\text{R}_2\)</span>（串联）
+参数：<code>R1_R</code>, <code>R2_R</code></p>
+<p><strong>案例 2：一个电阻与一个 CPE 并联（RC 并联）</strong></p>
+<pre><code>(R1C1)</code></pre>
+<p>等效电路：<span class="math inline">\(\text{R}_1 \parallel
+\text{CPE}_1\)</span> 参数：<code>R1_R</code>, <code>C1_C</code>,
+<code>C1_p</code></p>
+<p><img
+src="D:\01.工作内容\obsidian_simulation_report\仿真报告\Pasted%20image%2020260717153427.png" /></p>
+<p> </p>
+<p><strong>案例 3：电阻与 RC 并联支路串联</strong></p>
+<pre><code>R1-(R2C1)</code></pre>
+<p>等效电路：<span class="math inline">\(\text{R}_1\)</span> — (<span
+class="math inline">\(\text{R}_2 \parallel \text{CPE}_1\)</span>)
+参数：<code>R1_R</code>, <code>R2_R</code>, <code>C1_C</code>,
+<code>C1_p</code> <img
+src="D:\01.工作内容\obsidian_simulation_report\仿真报告\Pasted%20image%2020260717153856.png" /></p>
+<p><strong>案例 4：电阻与 RC 并联支路再并联</strong></p>
+<pre><code>(R1(R2C1))</code></pre>
+<p>等效电路：<span class="math inline">\(\text{R}_1 \parallel
+(\text{R}_2 \parallel \text{CPE}_1)\)</span> = <span
+class="math inline">\(\text{R}_1 \parallel \text{R}_2 \parallel
+\text{CPE}_1\)</span> 参数：<code>R1_R</code>, <code>R2_R</code>,
+<code>C1_C</code>, <code>C1_p</code> <img
+src="D:\01.工作内容\obsidian_simulation_report\仿真报告\Pasted%20image%2020260717153950.png" /></p>
+<p> </p>
+<p><strong>案例 5：含有 Warburg 扩散的 Randles 电路</strong></p>
+<pre><code>R1-(C1(R2-Wo1))</code></pre>
+<p>等效电路：<span class="math inline">\(\text{R}_1 — (\text{CPE}_1
+\parallel (\text{R}_2 — \text{Wo}_1))\)</span></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">层次</th>
+<th style="text-align: left;">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>Wo1</code></td>
+<td style="text-align: left;">有限空间扩散阻抗 <span
+class="math inline">\(Z_{\text{Wo}}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>R2-Wo1</code></td>
+<td style="text-align: left;"><span class="math inline">\(R_2\)</span>
+与 <span class="math inline">\(Wo_1\)</span> 串联</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>(C1(R2-Wo1))</code></td>
+<td style="text-align: left;"><span class="math inline">\(C_1\)</span>
+与上述串联体并联</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>R1-(C1(R2-Wo1))</code></td>
+<td style="text-align: left;"><span class="math inline">\(R_1\)</span>
+与上述并联体串联</td>
+</tr>
+</tbody>
+</table>
+<p>参数：<code>R1_R</code>, <code>R2_R</code>, <code>C1_C</code>,
+<code>C1_p</code>, <code>Wo1_Rd</code>, <code>Wo1_tau</code> <img
+src="D:\01.工作内容\obsidian_simulation_report\仿真报告\Pasted%20image%2020260717154032.png" /></p>
+<p> </p>
+<p> </p>
+<h2 id="组件命名规则">1.4 组件命名规则</h2>
+<ul>
+<li>组件名以字母开头，后跟数字：<code>R1</code>, <code>R2</code>,
+<code>C1</code>, <code>L1</code>, <code>Wo1</code>, <code>Ws1</code>,
+<code>W1</code></li>
+<li>组件类型由名称的首字母/前缀自动识别（<code>R</code>→ 电阻,
+<code>C</code>→ CPE, <code>L</code>→ 电感, <code>Wo</code>→
+有限空间扩散, <code>Ws</code>→ 有限长度扩散, <code>W</code>→ 半无限扩散,
+<code>H</code>→ Havriliak-Negami, <code>Ha</code>→ HN 替代形式,
+<code>G</code>→ Gerischer, <code>Ga</code>→ Gerischer 替代形式）</li>
+<li>参数名自动生成：<code>组件名_参数后缀</code>（如 <code>R1_R</code>,
+<code>C1_C</code>, <code>C1_p</code>, <code>Wo1_Rd</code>,
+<code>Wo1_tau</code>）</li>
+</ul>
+<p> </p>
+</body>
+</html>

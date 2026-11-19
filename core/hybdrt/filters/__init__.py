@@ -1,0 +1,1 @@
+from ._filters import nonuniform_gaussian_filter1d
